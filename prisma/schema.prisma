@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role { USER ADMIN }
+enum ProductType { STANDARD SIGNED COLLECTOR }
+enum AuctionStatus { DRAFT LIVE ENDED }
+enum OrderStatus { PENDING PAID SHIPPED COMPLETED CANCELLED }
+enum PaymentStatus { PENDING PAID FAILED REFUNDED }
+
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  name String?
+  passwordHash String?
+  role Role @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bids Bid[]
+  orders Order[]
+  favorites Favorite[]
+  addresses Address[]
+}
+
+model Product {
+  id String @id @default(cuid())
+  slug String @unique
+  name String
+  description String
+  category String
+  type ProductType @default(STANDARD)
+  club String?
+  player String?
+  season String?
+  priceCents Int
+  currency String @default("EUR")
+  stock Int @default(0)
+  sizes String[]
+  imageUrl String?
+  imageUrls String[]
+  certificateId String? @unique
+  provenance String?
+  signingProof String?
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  favorites Favorite[]
+  orderItems OrderItem[]
+}
+
+model Auction {
+  id String @id @default(cuid())
+  slug String @unique
+  title String
+  description String
+  player String?
+  club String?
+  category String
+  currentBidCents Int
+  bidStepCents Int @default(5000)
+  currency String @default("EUR")
+  endsAt DateTime
+  status AuctionStatus @default(DRAFT)
+  certificateId String?
+  provenance String?
+  signingProof String?
+  imageUrl String?
+  imageUrls String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bids Bid[]
+  favorites Favorite[]
+}
+
+model Bid {
+  id String @id @default(cuid())
+  amountCents Int
+  createdAt DateTime @default(now())
+  auctionId String
+  bidderId String
+  auction Auction @relation(fields:[auctionId],references:[id],onDelete:Cascade)
+  bidder User @relation(fields:[bidderId],references:[id],onDelete:Cascade)
+  @@index([auctionId, createdAt])
+  @@index([bidderId, createdAt])
+}
+
+model Favorite {
+  id String @id @default(cuid())
+  userId String
+  productId String?
+  auctionId String?
+  user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+  product Product? @relation(fields:[productId],references:[id],onDelete:Cascade)
+  auction Auction? @relation(fields:[auctionId],references:[id],onDelete:Cascade)
+  createdAt DateTime @default(now())
+  @@unique([userId, productId])
+  @@unique([userId, auctionId])
+}
+
+model Order {
+  id String @id @default(cuid())
+  userId String?
+  email String
+  status OrderStatus @default(PENDING)
+  paymentStatus PaymentStatus @default(PENDING)
+  totalCents Int
+  currency String @default("EUR")
+  shippingName String?
+  shippingLine1 String?
+  shippingCity String?
+  shippingPostal String?
+  shippingCountry String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User? @relation(fields:[userId],references:[id],onDelete:SetNull)
+  items OrderItem[]
+}
+
+model OrderItem {
+  id String @id @default(cuid())
+  orderId String
+  productId String
+  quantity Int
+  size String?
+  unitPriceCents Int
+  order Order @relation(fields:[orderId],references:[id],onDelete:Cascade)
+  product Product @relation(fields:[productId],references:[id])
+}
+
+model Address {
+  id String @id @default(cuid())
+  userId String
+  label String?
+  firstName String
+  lastName String
+  line1 String
+  city String
+  postalCode String
+  country String
+  phone String?
+  user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+}
