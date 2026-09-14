@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function Footer(){return <footer><div>© 2026 MEMORABILIA AUTOGRAPH</div><div>FOOTBALL • PASSION • HISTORY</div><div><Link href="#">Privacy</Link> • <Link href="#">Terms</Link> • <Link href="#">Contact</Link></div></footer>}
