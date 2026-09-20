@@ -6,7 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate && prisma db push --skip-generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
