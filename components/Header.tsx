@@ -20,8 +20,8 @@ export default function Header() {
 
   const ru=language==='ru';
   const nav=ru
-    ? [['Главная','/'],['Магазин','/shop'],['Аукционы','/auctions'],['О нас','/#about'],['Подлинность','/shop?category=Signed'],['Благотворительность','/#charity'],['Контакты','/#contact']]
-    : [['Home','/'],['Shop','/shop'],['Auctions','/auctions'],['About','/#about'],['Authenticity','/shop?category=Signed'],['Charity','/#charity'],['Contact','/#contact']];
+    ? [['Главная','/'],['Магазин','/shop'],['О нас','/#about'],['Подлинность','/shop?category=Signed'],['Благотворительность','/#charity'],['Контакты','/#contact']]
+    : [['Home','/'],['Shop','/shop'],['About','/#about'],['Authenticity','/shop?category=Signed'],['Charity','/#charity'],['Contact','/#contact']];
 
   const isActive=(href:string)=>{
     if(href.includes('#')) return pathname==='/' && hash===href.substring(href.indexOf('#'));
