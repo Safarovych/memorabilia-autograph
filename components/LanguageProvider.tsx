@@ -8,6 +8,7 @@ const LanguageContext=createContext<{language:Language;setLanguage:(l:Language)=
 export function LanguageProvider({children}:{children:React.ReactNode}){
   const [language,setLanguage]=useState<Language>('en');
   useEffect(()=>{const saved=localStorage.getItem('ma-language');if(saved==='ru'||saved==='en')setLanguage(saved)},[]);
+  useEffect(()=>{document.documentElement.lang=language},[language]);
   const change=(l:Language)=>{setLanguage(l);localStorage.setItem('ma-language',l)};
   return <LanguageContext.Provider value={{language,setLanguage:change}}>{children}</LanguageContext.Provider>;
 }
