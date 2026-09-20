@@ -22,8 +22,6 @@ export async function POST(request: Request) {
     const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase().trim();
     const adminPassword = process.env.ADMIN_PASSWORD;
 
-    // The configured admin credentials are authoritative for the configured admin account.
-    // This also repairs/synchronizes an existing admin user after an ADMIN_PASSWORD change.
     if (adminEmail && adminPassword && normalizedEmail === adminEmail && String(password) === adminPassword) {
       const passwordHash = await makePasswordHash(adminPassword);
       const user = await prisma.user.upsert({
@@ -44,7 +42,15 @@ export async function POST(request: Request) {
 
     await setSession(user.id);
     return NextResponse.json({ ok: true, role: user.role, redirect: user.role === 'ADMIN' ? '/admin' : '/' });
-  } catch {
+  } catch (error) {
+    console.error('[auth/login] failed', error);
+    const message = error instanceof Error ? error.message : '';
+    if (message.includes('AUTH_SECRET')) {
+      return NextResponse.json(
+        { error: 'Authentication is not configured on the server. Please set AUTH_SECRET in Vercel.' },
+        { status: 503 }
+      );
+    }
     return NextResponse.json({ error: 'Login failed' }, { status: 500 });
   }
 }
