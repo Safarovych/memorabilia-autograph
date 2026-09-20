@@ -8,7 +8,7 @@ export default function Header() {
       <span><strong>MEMORABILIA AUTOGRAPH</strong><small>AUTHENTIC SPORTS MEMORABILIA</small></span>
     </Link>
     <nav>
-      {[['Home','/'],['Shop','/shop'],['Auctions','/auctions'],['About','/#about'],['Authenticity','/shop?category=Signed'],['Charity','/about'],['Contact','/#contact']].map(([label,href])=><Link key={label} href={href}>{label}</Link>)}
+      {[['Home','/'],['Shop','/shop'],['Auctions','/auctions'],['About','/#about'],['Authenticity','/shop?category=Signed'],['Charity','/#charity'],['Contact','/#contact']].map(([label,href])=><Link key={label} href={href}>{label}</Link>)}
     </nav>
     <div className="premiumActions">
       <Link href="/shop" aria-label="Search"><SearchIcon/></Link>
