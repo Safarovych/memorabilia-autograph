@@ -43,7 +43,7 @@ export default function Site() {
       </div>
     </section>
     <section className="categoryStrip">{categories.map(([name,icon]) => <Link href="/shop" key={name}><b>{icon}</b><span>{name}</span></Link>)}</section>
-    <section className="lightSection">
+    <section className="lightSection" id="about">
       <div className="premiumSectionHead"><div><p className="goldEyebrow">LIVE AUCTIONS</p><h2>BID ON ICONS</h2></div><Link href="/auctions">View all auctions <ArrowIcon/></Link></div>
       <div className="premiumAuctionGrid">{lots.map(([player,meta,bid,slug,tone,num],i) => <article className="premiumAuctionCard" key={player}>
         <Link href={'/auction/'+slug} className={'premiumCardVisual '+tone}>{i===0 && <span className="hotTag">HOT</span>}<span className="wish"><HeartIcon/></span><div className="cardKit"><span>{player.split(' ')[0].toUpperCase()}</span><b>{num || '10'}</b></div></Link>
@@ -54,7 +54,7 @@ export default function Site() {
       <div className="collectionIntro"><p className="goldEyebrow">SHOP THE COLLECTION</p><h2>THE BEST MEMORABILIA<br/>IN ONE PLACE</h2><p>Browse our exclusive collection of signed jerseys, boots, shirts and more. Own a piece of football history.</p><Link className="darkBtn" href="/shop">SHOP ALL PRODUCTS <ArrowIcon/></Link></div>
       <div className="collectionTiles">{[['Jerseys','zidane'],['Boots','boots'],['Balls','ball'],['Framed Memorabilia','frame']].map(([name,kind])=><Link className="collectionTile" href="/shop" key={name}><div className={'tileVisual '+kind}></div><strong>{name}</strong><span>Shop now →</span></Link>)}</div>
     </section>
-    <section className="serviceBar">
+    <section className="serviceBar" id="charity">
       <div><b>♧</b><span><strong>Authenticity Guaranteed</strong>Certificates & video proof</span></div><div><b>▱</b><span><strong>Worldwide Shipping</strong>Safe & insured delivery</span></div><div><b>◇</b><span><strong>Secure Payments</strong>SSL encrypted</span></div><div><b>♧</b><span><strong>Support & Help</strong>We're here for you</span></div>
     </section>
   </main>;
