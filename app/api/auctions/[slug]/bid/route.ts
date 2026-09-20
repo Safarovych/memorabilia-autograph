@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { Prisma } from '@prisma/client';
 import { prisma } from '../../../../../lib/prisma';
 import { getCurrentUser } from '../../../../../lib/auth';
 
@@ -11,7 +12,7 @@ export async function POST(req: Request, {params}:{params:Promise<{slug:string}>
   const amountCents=Number(body.amountCents);
   if(!Number.isInteger(amountCents)) return NextResponse.json({error:'Invalid bid.'},{status:400});
 
-  const result = await prisma.$transaction(async tx=>{
+  const result = await prisma.$transaction(async (tx: Prisma.TransactionClient)=>{
     const auction=await tx.auction.findUnique({where:{slug}});
     if(!auction) throw new Error('Auction not found');
     if(auction.status!=='LIVE'||auction.endsAt<=new Date()) throw new Error('Auction is not live');
