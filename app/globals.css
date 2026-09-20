@@ -147,3 +147,16 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .productDetailGrid h1{overflow-wrap:anywhere}
 @media(max-width:900px){.productDetailGrid{grid-template-columns:1fr;gap:22px}.productDetailGrid>.productVisual{height:430px}}
 @media(max-width:680px){.productDetailGrid{gap:18px}.productDetailGrid>.productVisual{height:330px}.productDetailGrid h1{font-size:38px!important;line-height:1.02}.productDetailGrid h2{font-size:25px}.productDetailGrid .btn{width:100%}}
+
+
+.adminListHeader{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.adminListHeader h2{margin:0;font:700 20px Arial,sans-serif}
+.adminPhotoBox{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px;background:#f7f4ee;border:1px solid #e3dfd8}
+.adminPhotoPreview{width:110px;height:110px;border:1px solid #d8d2c8;background:#fff;display:grid;place-items:center;overflow:hidden;color:#999;font-size:8px;text-align:center}
+.adminPhotoPreview img{width:100%;height:100%;object-fit:cover}
+.adminPhotoBox strong{display:block;font-size:10px;margin-bottom:7px}
+.adminPhotoBox input[type=file]{display:block;width:100%;font-size:9px;margin-bottom:8px}
+.adminPhotoBox input[type=text],.adminPhotoBox input:not([type]){margin-top:7px}
+.adminPhotoBox small{display:block;margin-top:7px;color:#888;font-size:8px;line-height:1.4}
+.adminEditingNotice{padding:10px 12px;background:#f7f0e4;border-left:3px solid #b78b3a;font-size:9px;color:#6d5b3a}
+.adminFormEditing{border-color:#b78b3a;box-shadow:0 10px 30px rgba(183,139,58,.10)}
+@media(max-width:680px){.adminPhotoBox{grid-template-columns:90px 1fr}.adminPhotoPreview{width:90px;height:90px}.adminRowActions b{width:100%}}
