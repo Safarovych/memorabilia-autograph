@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '../../../lib/prisma';
-import { makePasswordHash } from '../../../lib/auth';
+import { prisma } from '../../../../lib/prisma';
+import { makePasswordHash } from '../../../../lib/auth';
 
 export async function POST(request: Request) {
   try {
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Password must be at least 8 characters' }, { status: 400 });
     }
 
-    if (!/^\\S+@\\S+\\.\\S+$/.test(normalizedEmail)) {
+    if (!/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
       return NextResponse.json({ error: 'Enter a valid email address' }, { status: 400 });
     }
 
