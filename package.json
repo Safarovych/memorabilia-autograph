@@ -6,7 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "postinstall": "prisma generate && prisma db push --skip-generate",
+    "postinstall": "prisma generate && prisma db push --skip-generate && prisma db seed",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -27,5 +27,8 @@
     "typescript": "5.9.2",
     "prisma": "6.19.3",
     "tsx": "4.20.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
