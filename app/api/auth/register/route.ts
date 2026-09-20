@@ -38,7 +38,8 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ ok: true, userId: user.id, redirect: '/login' }, { status: 201 });
-  } catch {
-    return NextResponse.json({ error: 'Registration failed' }, { status: 500 });
+  } catch (error) {
+    console.error('[registration] failed', error);
+    return NextResponse.json({ error: 'Registration failed. Please try again.' }, { status: 500 });
   }
 }
