@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import PageShell from '../../components/PageShell';
 import LanguageText from '../../components/LanguageText';
 
-export default function Login(){
+function LoginForm(){
   const params=useSearchParams();
   const router=useRouter();
   const admin=params.get('admin')==='1';
@@ -35,4 +35,10 @@ export default function Login(){
     </form>
     {!admin && <p style={{color:'#777',marginTop:20}}><LanguageText en="New here? " ru="Впервые здесь? "/><Link href="/register"><LanguageText en="Create an account" ru="Создать аккаунт"/></Link></p>}
   </main></PageShell>
+}
+
+export default function Login(){
+  return <Suspense fallback={<PageShell><main className="section adminLogin" style={{maxWidth:620,margin:'0 auto'}}><p className="eyebrow">ACCOUNT</p><h1 style={{font:'normal 52px Georgia,serif'}}>SIGN IN</h1></main></PageShell>}>
+    <LoginForm />
+  </Suspense>;
 }
