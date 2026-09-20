@@ -10,6 +10,7 @@ export default function Header() {
   const {language,setLanguage}=useLanguage();
   const pathname=usePathname();
   const [hash,setHash]=useState('');
+  const [menuOpen,setMenuOpen]=useState(false);
 
   useEffect(()=>{
     const updateHash=()=>setHash(window.location.hash);
@@ -28,9 +29,10 @@ export default function Header() {
     return pathname===href;
   };
 
-  return <header className="premiumHeader">
+  return <header className={'premiumHeader '+(menuOpen?'menuOpen':'')}>
     <Link className="premiumLogo" href="/"><span className="premiumLogoMark">MA</span><span><strong>MEMORABILIA AUTOGRAPH</strong><small>{ru?'АУТЕНТИЧНЫЕ ФУТБОЛЬНЫЕ РЕЛИКВИИ':'AUTHENTIC SPORTS MEMORABILIA'}</small></span></Link>
-    <nav>{nav.map(([label,href])=><Link key={label} href={href} className={isActive(href)?'active':''}>{label}</Link>)}</nav>
+    <button className="mobileMenuButton" type="button" aria-label={menuOpen?(ru?'Закрыть меню':'Close menu'):(ru?'Открыть меню':'Open menu')} aria-expanded={menuOpen} onClick={()=>setMenuOpen(v=>!v)}><span></span><span></span><span></span></button>
+    <nav onClick={()=>setMenuOpen(false)}>{nav.map(([label,href])=><Link key={label} href={href} className={isActive(href)?'active':''}>{label}</Link>)}</nav>
     <div className="premiumActions">
       <Link href="/shop" aria-label={ru?'Поиск':'Search'}><SearchIcon/></Link>
       <Link href="/login" aria-label={ru?'Аккаунт':'Account'}><UserIcon/></Link>
