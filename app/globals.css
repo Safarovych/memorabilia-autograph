@@ -139,3 +139,11 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .analyticsConsentActions button:first-child{background:#b78b3a;border-color:#b78b3a}
 @media(max-width:900px){.adminAnalyticsGrid{grid-template-columns:1fr}.adminStatsGrid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.adminStatsGrid{grid-template-columns:1fr}.analyticsConsent{left:10px;right:10px;bottom:10px;flex-direction:column;align-items:stretch;gap:12px}.analyticsConsentActions{width:100%}.analyticsConsentActions button{flex:1}.adminProductRow{align-items:flex-start}.adminRowActions{justify-content:flex-start}}
+
+
+.productDetailGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:start}
+.productDetailGrid>.productVisual{height:520px;min-height:320px}
+.productCardImage,.productDetailImage{display:block;width:100%;height:100%;object-fit:cover}
+.productDetailGrid h1{overflow-wrap:anywhere}
+@media(max-width:900px){.productDetailGrid{grid-template-columns:1fr;gap:22px}.productDetailGrid>.productVisual{height:430px}}
+@media(max-width:680px){.productDetailGrid{gap:18px}.productDetailGrid>.productVisual{height:330px}.productDetailGrid h1{font-size:38px!important;line-height:1.02}.productDetailGrid h2{font-size:25px}.productDetailGrid .btn{width:100%}}
