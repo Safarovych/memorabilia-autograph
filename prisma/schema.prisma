@@ -53,7 +53,6 @@ model User {
   orders Order[]
   favorites Favorite[]
   addresses Address[]
-  visits Visit[]
 }
 
 model Product {
