@@ -32,3 +32,72 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .shopEmpty h3{margin:0 0 8px;font-size:13px}
 .shopEmpty p{margin:0;color:#777;font-size:10px;line-height:1.6;max-width:560px}
 @media(max-width:680px){.shopCategoryNav{display:grid;grid-template-columns:repeat(2,1fr)}.shopCategoryNav a{text-align:center}.shopCategorySection{padding:24px 0 32px}}
+
+
+.mobileMenuButton{display:none}
+.shopPage{overflow:hidden}
+.shopPage .sectionHead h2{font-size:42px}
+.shopCategoryNav{position:sticky;top:0;z-index:5}
+.shopCategorySection .productGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.productCard{min-width:0}
+.productVisual{aspect-ratio:1/1;height:auto}
+.productInfo{min-height:72px}
+.productInfo>div{min-width:0}
+.productInfo h3{line-height:1.35;overflow-wrap:anywhere}
+.productInfo strong{white-space:nowrap}
+
+@media(max-width:900px){
+  .premiumHeader{padding:12px 20px;height:68px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"logo actions" "nav nav";gap:0 14px}
+  .premiumLogo{grid-area:logo;min-width:0}
+  .premiumLogo strong{font-size:11px;letter-spacing:.1em}
+  .premiumLogo small{font-size:6px;letter-spacing:.16em}
+  .premiumLogoMark{font-size:27px}
+  .premiumActions{grid-area:actions;gap:11px}
+  .premiumActions>a{display:flex}
+  .premiumActions svg{width:17px;height:17px}
+  .mobileMenuButton{display:flex;grid-area:nav;justify-self:end;position:absolute;right:18px;top:17px;width:34px;height:34px;padding:7px;flex-direction:column;justify-content:space-around;border:1px solid #ddd8cf;background:#fff;cursor:pointer;z-index:12}
+  .mobileMenuButton span{display:block;width:100%;height:1.5px;background:#17191b;transition:.2s}
+  .premiumHeader nav{display:none}
+  .premiumHeader.menuOpen nav{display:flex;position:absolute;left:0;right:0;top:68px;z-index:11;padding:14px 20px 18px;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid var(--premium-line);box-shadow:0 12px 24px rgba(30,27,22,.08)}
+  .premiumHeader.menuOpen nav a{padding:13px 0;border-bottom:1px solid #eeeae4;font-size:12px}
+  .premiumHeader.menuOpen nav a:last-child{border-bottom:0}
+  .premiumHeader.menuOpen nav a.active:after{display:none}
+  .premiumHeader.menuOpen nav a.active{color:var(--premium-gold)}
+  .premiumHeader.menuOpen .mobileMenuButton span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .premiumHeader.menuOpen .mobileMenuButton span:nth-child(2){opacity:0}
+  .premiumHeader.menuOpen .mobileMenuButton span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .shopPage{padding:32px 16px!important}
+  .shopPage .sectionHead{margin-bottom:18px;padding-bottom:18px}
+  .shopPage .sectionHead h2{font-size:32px;line-height:1.05}
+  .shopPage .sectionHead p:not(.eyebrow){font-size:11px;line-height:1.55}
+  .shopCategoryNav{top:68px;margin:0 -1px 20px;padding:8px 0;background:#fffdfa;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .shopCategoryNav a{padding:11px 7px;font-size:8px;line-height:1.25}
+  .shopCategorySection{padding:22px 0 28px;scroll-margin-top:138px}
+  .shopCategoryHead{margin-bottom:13px}
+  .shopCategoryHead h2{font-size:21px}
+  .shopCategoryCount{min-width:25px;width:25px;height:25px}
+  .shopCategorySection .productGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .productVisual{min-height:150px}
+  .productInfo{padding:10px;min-height:78px;gap:6px}
+  .productInfo h3{font-size:10px}
+  .productInfo p{font-size:8px;line-height:1.35}
+  .productInfo strong{font-size:10px}
+  .badge{left:8px;top:8px;padding:4px 6px;font-size:7px}
+  .shirtMark{font-size:22px}
+  .shirtNumber{font-size:82px}
+  .shopEmpty{padding:18px}
+}
+
+@media(max-width:480px){
+  .premiumActions{gap:8px}
+  .premiumActions>a:nth-child(1),.premiumActions>a:nth-child(3){display:none}
+  .premiumLogo strong{font-size:10px}
+  .premiumLogo small{font-size:5px}
+  .shopPage .sectionHead h2{font-size:29px}
+  .shopCategoryNav{grid-template-columns:repeat(2,1fr)}
+  .shopCategoryNav a{font-size:7px;padding:10px 5px}
+  .shopCategorySection .productGrid{gap:7px}
+  .productVisual{min-height:135px}
+  .productInfo{padding:9px;display:block}
+  .productInfo strong{display:block;margin-top:7px}
+}
