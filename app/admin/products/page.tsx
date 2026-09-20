@@ -9,7 +9,7 @@ export default function AdminProducts(){
   const [products,setProducts]=useState<Product[]>([]);
   const [error,setError]=useState('');
   const [saving,setSaving]=useState(false);
-  const [form,setForm]=useState({name:'',slug:'',description:'',category:'Jerseys',type:'SIGNED',price:'',stock:'1',player:'',club:'',season:'',imageUrl:'',certificateId:'',provenance:'',signingProof:''});
+  const [form,setForm]=useState({name:'',slug:'',description:'',category:'Shirts',type:'SIGNED',price:'',stock:'1',player:'',club:'',season:'',imageUrl:'',certificateId:'',provenance:'',signingProof:''});
 
   async function load(){
     const res=await fetch('/api/admin/products');
@@ -25,7 +25,7 @@ export default function AdminProducts(){
     const data=await res.json();
     if(!res.ok){setError(data.error||'Ошибка');setSaving(false);return}
     setProducts(v=>[data,...v]);
-    setForm({name:'',slug:'',description:'',category:'Jerseys',type:'SIGNED',price:'',stock:'1',player:'',club:'',season:'',imageUrl:'',certificateId:'',provenance:'',signingProof:''});
+    setForm({name:'',slug:'',description:'',category:'Shirts',type:'SIGNED',price:'',stock:'1',player:'',club:'',season:'',imageUrl:'',certificateId:'',provenance:'',signingProof:''});
     setSaving(false);
   }
 
@@ -38,7 +38,10 @@ export default function AdminProducts(){
         <input value={form.slug} onChange={e=>set('slug',e.target.value)} placeholder="Slug, например messi-signed-jersey" required/>
         <textarea value={form.description} onChange={e=>set('description',e.target.value)} placeholder="Описание" required/>
         <div className="adminTwo"><input value={form.player} onChange={e=>set('player',e.target.value)} placeholder="Игрок"/><input value={form.club} onChange={e=>set('club',e.target.value)} placeholder="Клуб"/></div>
-        <div className="adminTwo"><input value={form.season} onChange={e=>set('season',e.target.value)} placeholder="Сезон"/><input value={form.category} onChange={e=>set('category',e.target.value)} placeholder="Категория" required/></div>
+        <div className="adminTwo"><input value={form.season} onChange={e=>set('season',e.target.value)} placeholder="Сезон"/>
+<select value={form.category} onChange={e=>set('category',e.target.value)} required>
+  <option value="Shirts">Футболки</option><option value="Boots">Бутсы</option><option value="Shorts">Шорты</option><option value="Balls">Мячи</option><option value="Scarves">Шарфы</option><option value="Armbands">Повязки</option>
+</select></div>
         <div className="adminTwo"><select value={form.type} onChange={e=>set('type',e.target.value)}><option value="SIGNED">SIGNED</option><option value="STANDARD">STANDARD</option><option value="COLLECTOR">COLLECTOR</option></select><input value={form.price} onChange={e=>set('price',e.target.value)} placeholder="Цена EUR" type="number" min="0" step="0.01" required/></div>
         <input value={form.stock} onChange={e=>set('stock',e.target.value)} placeholder="Количество" type="number" min="0"/>
         <input value={form.imageUrl} onChange={e=>set('imageUrl',e.target.value)} placeholder="URL главного изображения"/>
