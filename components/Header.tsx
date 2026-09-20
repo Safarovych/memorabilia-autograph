@@ -1,18 +1,36 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { BagIcon, HeartIcon, SearchIcon, UserIcon } from './Icon';
 import { useLanguage } from './LanguageProvider';
 
 export default function Header() {
   const {language,setLanguage}=useLanguage();
+  const pathname=usePathname();
+  const [hash,setHash]=useState('');
+
+  useEffect(()=>{
+    const updateHash=()=>setHash(window.location.hash);
+    updateHash();
+    window.addEventListener('hashchange',updateHash);
+    return ()=>window.removeEventListener('hashchange',updateHash);
+  },[]);
+
   const ru=language==='ru';
   const nav=ru
     ? [['Главная','/'],['Магазин','/shop'],['Аукционы','/auctions'],['О нас','/#about'],['Подлинность','/shop?category=Signed'],['Благотворительность','/#charity'],['Контакты','/#contact']]
     : [['Home','/'],['Shop','/shop'],['Auctions','/auctions'],['About','/#about'],['Authenticity','/shop?category=Signed'],['Charity','/#charity'],['Contact','/#contact']];
+
+  const isActive=(href:string)=>{
+    if(href.includes('#')) return pathname==='/' && hash===href.substring(href.indexOf('#'));
+    return pathname===href;
+  };
+
   return <header className="premiumHeader">
     <Link className="premiumLogo" href="/"><span className="premiumLogoMark">MA</span><span><strong>MEMORABILIA AUTOGRAPH</strong><small>{ru?'АУТЕНТИЧНЫЕ ФУТБОЛЬНЫЕ РЕЛИКВИИ':'AUTHENTIC SPORTS MEMORABILIA'}</small></span></Link>
-    <nav>{nav.map(([label,href])=><Link key={label} href={href}>{label}</Link>)}</nav>
+    <nav>{nav.map(([label,href])=><Link key={label} href={href} className={isActive(href)?'active':''}>{label}</Link>)}</nav>
     <div className="premiumActions">
       <Link href="/shop" aria-label={ru?'Поиск':'Search'}><SearchIcon/></Link>
       <Link href="/login" aria-label={ru?'Аккаунт':'Account'}><UserIcon/></Link>
