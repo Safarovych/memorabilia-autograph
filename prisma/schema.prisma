@@ -47,10 +47,13 @@ model User {
   role Role @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  lastSeenAt DateTime?
+  visits Visit[]
   bids Bid[]
   orders Order[]
   favorites Favorite[]
   addresses Address[]
+  visits Visit[]
 }
 
 model Product {
@@ -170,4 +173,18 @@ model Address {
   country String
   phone String?
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Visit {
+  id String @id @default(cuid())
+  visitorId String
+  path String
+  referrer String?
+  userId String?
+  createdAt DateTime @default(now())
+  visitor User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  @@index([createdAt])
+  @@index([visitorId, createdAt])
+  @@index([path, createdAt])
+  @@index([userId, createdAt])
 }
