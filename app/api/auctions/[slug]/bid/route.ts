@@ -20,7 +20,7 @@ export async function POST(req: Request, {params}:{params:Promise<{slug:string}>
     const bid=await tx.bid.create({data:{amountCents,auctionId:auction.id,bidderId:user.id}});
     const updated=await tx.auction.update({where:{id:auction.id},data:{currentBidCents:amountCents}});
     return {bid,updated};
-  }).catch((e)=>({error:e instanceof Error?e.message:'Unable to place bid'}));
+  }).catch((e: unknown)=>({error:e instanceof Error?e.message:'Unable to place bid'}));
   if('error' in result) return NextResponse.json(result,{status:400});
   return NextResponse.json(result);
 }
