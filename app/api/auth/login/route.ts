@@ -18,17 +18,25 @@ export async function POST(request: Request) {
     const { email, password } = await request.json();
     if (!email || !password) return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
 
-    let user = await prisma.user.findUnique({ where: { email: String(email).toLowerCase().trim() } });
-
+    const normalizedEmail = String(email).toLowerCase().trim();
     const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase().trim();
     const adminPassword = process.env.ADMIN_PASSWORD;
 
-    if (!user && adminEmail && adminPassword && String(email).toLowerCase().trim() === adminEmail) {
+    // The configured admin credentials are authoritative for the configured admin account.
+    // This also repairs/synchronizes an existing admin user after an ADMIN_PASSWORD change.
+    if (adminEmail && adminPassword && normalizedEmail === adminEmail && String(password) === adminPassword) {
       const passwordHash = await makePasswordHash(adminPassword);
-      user = await prisma.user.create({
-        data: { email: adminEmail, name: 'Administrator', passwordHash, role: 'ADMIN' },
+      const user = await prisma.user.upsert({
+        where: { email: adminEmail },
+        update: { passwordHash, role: 'ADMIN', name: 'Administrator' },
+        create: { email: adminEmail, name: 'Administrator', passwordHash, role: 'ADMIN' },
       });
+
+      await setSession(user.id);
+      return NextResponse.json({ ok: true, role: 'ADMIN', redirect: '/admin' });
     }
+
+    const user = await prisma.user.findUnique({ where: { email: normalizedEmail } });
 
     if (!user?.passwordHash || !(await verifyPassword(String(password), user.passwordHash))) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
