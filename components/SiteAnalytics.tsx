@@ -43,7 +43,7 @@ export default function SiteAnalytics(){
   if(consent!=='unknown') return null;
 
   return <div className="analyticsConsent" role="dialog" aria-label="Analytics consent">
-    <div><strong>Privacy & analytics</strong><p>We use anonymous site-visit statistics to improve the store. No IP address is stored.</p></div>
+    <div><strong>Privacy & analytics</strong><p>We use privacy-conscious visit statistics to improve the store. No IP address is stored; signed-in visits may be linked to your account.</p></div>
     <div className="analyticsConsentActions"><button onClick={()=>{localStorage.setItem(CONSENT_KEY,'yes');setConsent('yes')}}>Allow analytics</button><button onClick={()=>{localStorage.setItem(CONSENT_KEY,'no');setConsent('no')}}>No thanks</button></div>
   </div>;
 }
