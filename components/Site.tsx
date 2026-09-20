@@ -1,1 +1,61 @@
-import Link from 'next/link';import{products,auctions}from'../lib/catalog';import{ArrowIcon,HeartIcon}from'./Icon';export default function Site(){return <main><section className="hero"><div className="heroCopy"><p className="eyebrow">FOOTBALL HERITAGE / 01</p><h1>OWN A PIECE OF<br/><em>FOOTBALL HISTORY.</em></h1><p className="lead">Original jerseys. Signed legends.<br/>Collectible moments with a story.</p><div className="heroButtons"><Link className="btn" href="/shop">SHOP COLLECTION</Link><Link className="btn ghost" href="/auctions">LIVE AUCTIONS</Link></div></div><div className="heroVisual"><div className="heroJersey"><span className="heroName">MESSI</span><strong>10</strong></div></div></section><section className="trustbar">{[['AUTHENTICITY','Certificates & provenance'],['WORLDWIDE SHIPPING','Fast & insured'],['SECURE PAYMENTS','Card • PayPal • Apple Pay'],['FOR COLLECTORS','Built for football culture']].map(([t,s])=><div key={t}><strong>{t}</strong><span>{s}</span></div>)}</section><section className="section" id="about"><div className="sectionHead"><div><p className="eyebrow">CURATED / 02</p><h2>LATEST ARRIVALS</h2><p>Premium shirts and memorabilia.</p></div><Link href="/shop">VIEW ALL <ArrowIcon/></Link></div><div className="productGrid">{products.slice(0,4).map(p=><article className="productCard" key={p.slug}><Link href={p.signed?`/auction/${p.slug}`:`/product/${p.slug}`} className={`productVisual ${p.tone}`}><span className="badge">{p.badge}</span><span className="shirtMark">{p.mark}</span><span className="shirtNumber">{p.signed?'10':'11'}</span></Link><div className="productInfo"><div><h3>{p.name}</h3><p>{p.meta}</p></div><strong>{p.signed?'AUCTION':`€${p.price.toFixed(2)}`}</strong></div></article>)}</div></section><section className="auctionSection"><div className="sectionHead"><div><p className="eyebrow">LIVE / 03</p><h2>LIVE AUCTIONS</h2><p>Signed items. Rare stories. Serious collecting.</p></div><Link href="/auctions">VIEW ALL AUCTIONS</Link></div><div className="auctionGrid">{auctions.map(a=><article className="auctionCard" key={a.slug}><Link href={`/auction/${a.slug}`} className={`auctionVisual ${a.tone}`}><span className="liveBadge">LIVE</span><span className="auctionName">{a.player.toUpperCase()}</span><span className="auctionNumber">{a.mark}</span></Link><div className="auctionInfo"><h3>{a.player}</h3><p>{a.item} • {a.bids} bids</p><div className="bidRow"><div><span>CURRENT BID</span><strong>€{a.bid.toLocaleString('de-DE')}</strong></div><div><span>STATUS</span><strong>LIVE</strong></div></div><Link className="bidBtn" href={`/auction/${a.slug}`}>VIEW LOT</Link></div></article>)}</div></section><section className="authSection"><div className="authImage"><div className="certificate">MA<small>CERTIFICATE OF AUTHENTICITY</small><b>MA-2026-000184</b></div></div><div className="authCopy"><p className="eyebrow">TRUST / 04</p><h2>AUTHENTICITY<br/><em>BEYOND THE SIGNATURE.</em></h2><p>Every collectible is designed to have its own story: certificate ID, provenance, signing proof and a dedicated item page.</p><Link className="btn" href="/shop?category=Signed">EXPLORE SIGNED</Link></div></section><section className="footerCta"><div><p className="eyebrow">THE COLLECTION</p><h2>ICONIC MOMENTS.<br/><em>TIMELESS MEMORABILIA.</em></h2><p>From club jerseys to signed legends and rare collector pieces.</p></div><Link className="btn" href="/shop">DISCOVER NOW</Link></section></main>}
+import Link from 'next/link';
+import { ArrowIcon, HeartIcon } from './Icon';
+
+const categories = [
+  ['Jerseys','👕'],['Boots','👟'],['Shirts','👕'],['Shorts','▱'],
+  ['Balls','⚽'],['Framed Memorabilia','▣'],['Trading Cards','▤'],['Accessories','⌁']
+];
+
+export default function Site() {
+  const lots = [
+    ['Cristiano Ronaldo','Real Madrid — Signed Jersey','€ 4,250','ronaldo-signed-portugal-jersey','white','7'],
+    ['Eric Cantona','Manchester United — Signed Jersey','€ 3,180','zidane-signed-france-jersey','red','7'],
+    ['Kylian Mbappé','Match Worn Boots — Signed','€ 6,700','messi-signed-argentina-jersey','gold',''],
+    ['Neymar Jr.','FC Barcelona — Signed Jersey','€ 2,950','pele-signed-brazil-jersey','barca','11']
+  ];
+  return <main className="premiumHome">
+    <section className="premiumHero">
+      <div className="premiumHeroCopy">
+        <p className="goldEyebrow">PREMIUM SPORTS MEMORABILIA</p>
+        <h1>LEGENDS.<br/>AUTOGRAPHS.<br/><span>REAL STORIES.</span></h1>
+        <p className="heroLead">Original signed jerseys, boots, shirts and unique memorabilia from the biggest names in football.</p>
+        <div className="heroButtons">
+          <Link className="goldBtn" href="/shop">EXPLORE COLLECTION <ArrowIcon/></Link>
+          <Link className="lightBtn" href="/auctions">VIEW AUCTIONS <ArrowIcon/></Link>
+        </div>
+        <div className="heroTrust">
+          <div><b>✓</b><span><strong>100% Authentic</strong>Verified by experts</span></div>
+          <div><b>▱</b><span><strong>Worldwide Shipping</strong>Safe & insured delivery</span></div>
+          <div><b>♡</b><span><strong>Support a Better Future</strong>Part of proceeds to charity</span></div>
+        </div>
+      </div>
+      <div className="premiumHeroVisual">
+        <div className="heroFrame">
+          <div className="heroJerseyReal"><small>MESSI</small><strong>10</strong><em>unicef</em><i>✦</i></div>
+          <div className="framePlaque">LIONEL MESSI <small>FC BARCELONA • 2019/20</small></div>
+        </div>
+        <div className="heroSideCard">
+          <p>LIONEL MESSI</p><strong>SIGNED JERSEY</strong><span>FC Barcelona • 2019/20</span>
+          <blockquote>“More than a game.<br/>A piece of history.”</blockquote>
+          <Link className="darkBtn" href="/auction/messi-signed-argentina-jersey">VIEW AUCTION <ArrowIcon/></Link>
+        </div>
+        <div className="heroPager">← &nbsp; 01 &nbsp; 02 &nbsp; 03 &nbsp; →</div>
+      </div>
+    </section>
+    <section className="categoryStrip">{categories.map(([name,icon]) => <Link href="/shop" key={name}><b>{icon}</b><span>{name}</span></Link>)}</section>
+    <section className="lightSection">
+      <div className="premiumSectionHead"><div><p className="goldEyebrow">LIVE AUCTIONS</p><h2>BID ON ICONS</h2></div><Link href="/auctions">View all auctions <ArrowIcon/></Link></div>
+      <div className="premiumAuctionGrid">{lots.map(([player,meta,bid,slug,tone,num],i) => <article className="premiumAuctionCard" key={player}>
+        <Link href={'/auction/'+slug} className={'premiumCardVisual '+tone}>{i===0 && <span className="hotTag">HOT</span>}<span className="wish"><HeartIcon/></span><div className="cardKit"><span>{player.split(' ')[0].toUpperCase()}</span><b>{num || '10'}</b></div></Link>
+        <div className="premiumCardInfo"><h3>{player}</h3><p>{meta}</p><small>Current bid</small><div className="bidLine"><strong>{bid}</strong><span>◷ {i+2}d {14-i}h {32+i*9}m</span></div><Link href={'/auction/'+slug} className="placeBid">PLACE BID <ArrowIcon/></Link></div>
+      </article>)}</div>
+    </section>
+    <section className="shopCollection">
+      <div className="collectionIntro"><p className="goldEyebrow">SHOP THE COLLECTION</p><h2>THE BEST MEMORABILIA<br/>IN ONE PLACE</h2><p>Browse our exclusive collection of signed jerseys, boots, shirts and more. Own a piece of football history.</p><Link className="darkBtn" href="/shop">SHOP ALL PRODUCTS <ArrowIcon/></Link></div>
+      <div className="collectionTiles">{[['Jerseys','zidane'],['Boots','boots'],['Balls','ball'],['Framed Memorabilia','frame']].map(([name,kind])=><Link className="collectionTile" href="/shop" key={name}><div className={'tileVisual '+kind}></div><strong>{name}</strong><span>Shop now →</span></Link>)}</div>
+    </section>
+    <section className="serviceBar">
+      <div><b>♧</b><span><strong>Authenticity Guaranteed</strong>Certificates & video proof</span></div><div><b>▱</b><span><strong>Worldwide Shipping</strong>Safe & insured delivery</span></div><div><b>◇</b><span><strong>Secure Payments</strong>SSL encrypted</span></div><div><b>♧</b><span><strong>Support & Help</strong>We're here for you</span></div>
+    </section>
+  </main>;
+}
