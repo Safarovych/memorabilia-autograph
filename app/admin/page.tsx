@@ -19,7 +19,8 @@ export default async function AdminPage() {
       </div>
       <div className="adminGrid"><a className="adminCard" href="/admin/products"><strong>Товары</strong><span>Добавление и редактирование</span></a>
         <div className="adminCard"><strong>Заказы</strong><span>Заказы и статусы оплаты</span></div>
-        <div className="adminCard"><strong>Пользователи</strong><span>Аккаунты и роли</span></div>
+        <a className="adminCard" href="/admin/users"><strong>Пользователи</strong><span>Аккаунты, роли и активность</span></a>
+        <a className="adminCard" href="/admin/analytics"><strong>Посещения</strong><span>Статистика сайта и популярные страницы</span></a>
       </div>
     </main>
   </PageShell>
