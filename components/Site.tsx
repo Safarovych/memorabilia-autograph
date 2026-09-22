@@ -5,7 +5,7 @@ import { ArrowIcon, HeartIcon } from './Icon';
 import { useLanguage } from './LanguageProvider';
 
 const catsEn=['Jerseys','Boots','Shirts','Balls','Boxing Gloves','Tennis','UFC'];
-const catsRu=['Футболки','Бутсы','Рубашки','Мячи','Боксерские перчатки','Теннис','UFC'];
+const catsRu=['Футболки','Бутсы','Футболки','Мячи','Боксерские перчатки','Теннис','UFC'];
 
 export default function Site() {
   const {language}=useLanguage(); const ru=language==='ru';
