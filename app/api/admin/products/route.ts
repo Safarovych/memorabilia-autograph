@@ -30,6 +30,7 @@ export async function POST(request:Request){
     const product=await prisma.product.create({
       data:{
         name,slug,description,category,
+        subcategory:body.subcategory?String(body.subcategory):null,
         type:body.type==='SIGNED'||body.type==='COLLECTOR'?body.type:'STANDARD',
         club:body.club?String(body.club):null,
         player:body.player?String(body.player):null,
@@ -72,6 +73,7 @@ export async function PATCH(request:Request){
       where:{id},
       data:{
         name,slug,description,category,
+        subcategory:body.subcategory?String(body.subcategory):null,
         type:body.type==='SIGNED'||body.type==='COLLECTOR'?(body.type):'STANDARD',
         club:body.club?String(body.club):null,
         player:body.player?String(body.player):null,
