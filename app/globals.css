@@ -207,12 +207,14 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .premiumFooterSocial{display:flex!important;gap:10px;align-items:center}.premiumFooterSocial a{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border:1px solid #d8d2c8;background:#fff;color:#17191b!important;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.premiumFooterSocial a:hover{border-color:#b78b3a;color:#8b6a32!important}
 
 
-/* Premium generated imagery for collection tiles */
-.tileVisual{background-image:url('/sports-collection.webp');background-size:200% 200%;background-repeat:no-repeat;filter:saturate(.92) contrast(1.03)}
-.tileVisual.shirt{background-position:0 0}.tileVisual.boots{background-position:100% 0}.tileVisual.tennis{background-position:0 100%}.tileVisual.ufc{background-position:100% 100%}
-.collectionTile:hover .tileVisual{filter:saturate(1) contrast(1.06);transform:scale(1.015)}
 
 
-/* Reliable collection artwork fallback */
-.tileVisual{background-image:url('/sports-collection.svg')!important;background-size:400% 100%!important;background-repeat:no-repeat!important;transition:transform .25s ease,filter .25s ease}
-.tileVisual.shirt{background-position:0 50%!important}.tileVisual.boots{background-position:33.333% 50%!important}.tileVisual.tennis{background-position:66.666% 50%!important}.tileVisual.ufc{background-position:100% 50%!important}
+
+
+/* Real collection photos uploaded to public/ */
+.tileVisual{background-image:none!important;background-size:cover!important;background-repeat:no-repeat!important;background-position:center!important;transition:transform .25s ease,filter .25s ease}
+.tileVisual.shirt{background-image:url('/memorabilia_shirts.jpg')!important}
+.tileVisual.boots{background-image:url('/memorabilia_boots.jpg')!important}
+.tileVisual.tennis{background-image:url('/memorabilia_tennis.jpg')!important}
+.tileVisual.ufc{background-image:url('/memorabilia_ufc.jpg')!important}
+.collectionTile:hover .tileVisual{filter:saturate(1.04) contrast(1.04);transform:scale(1.015)}
