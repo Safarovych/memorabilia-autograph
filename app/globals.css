@@ -178,3 +178,11 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .adminTranslateBtn:hover{background:#efe2cb}
 .adminTranslateBtn:disabled{opacity:.55;cursor:wait}
 @media(max-width:680px){.adminLangGrid{grid-template-columns:1fr}}
+
+
+/* Product detail polish */
+.productDetailGrid h1{font-size:42px!important;line-height:1.06;letter-spacing:-.02em;max-width:620px;margin:10px 0 20px}
+.analyticsConsent{left:auto;right:24px;bottom:24px;width:min(520px,calc(100vw - 48px));padding:14px 16px;gap:16px;border-radius:2px}
+.analyticsConsent p{font-size:8.5px}
+@media(max-width:900px){.productDetailGrid h1{font-size:38px!important}}
+@media(max-width:680px){.analyticsConsent{left:10px;right:10px;bottom:10px;width:auto}.productDetailGrid h1{font-size:34px!important}}
