@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { ArrowIcon, HeartIcon } from './Icon';
 import { useLanguage } from './LanguageProvider';
 
-const catsEn=['Shirts','Boots','Balls','Boxing Gloves','Tennis','UFC'];
-const catsRu=['Футболки','Бутсы','Мячи','Боксерские перчатки','Теннис','UFC'];
+const catsEn=['Shirts','Boots','Balls','Boxing Gloves','Tennis','UFC','Formula 1','Basketball'];
+const catsRu=['Футболки','Бутсы','Мячи','Боксерские перчатки','Теннис','UFC','Formula 1','Баскетбол'];
 
 export default function Site() {
   const {language}=useLanguage(); const ru=language==='ru';
