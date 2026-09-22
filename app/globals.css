@@ -211,3 +211,8 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .tileVisual{background-image:url('/sports-collection.webp');background-size:200% 200%;background-repeat:no-repeat;filter:saturate(.92) contrast(1.03)}
 .tileVisual.shirt{background-position:0 0}.tileVisual.boots{background-position:100% 0}.tileVisual.tennis{background-position:0 100%}.tileVisual.ufc{background-position:100% 100%}
 .collectionTile:hover .tileVisual{filter:saturate(1) contrast(1.06);transform:scale(1.015)}
+
+
+/* Reliable collection artwork fallback */
+.tileVisual{background-image:url('/sports-collection.svg')!important;background-size:400% 100%!important;background-repeat:no-repeat!important;transition:transform .25s ease,filter .25s ease}
+.tileVisual.shirt{background-position:0 50%!important}.tileVisual.boots{background-position:33.333% 50%!important}.tileVisual.tennis{background-position:66.666% 50%!important}.tileVisual.ufc{background-position:100% 50%!important}
