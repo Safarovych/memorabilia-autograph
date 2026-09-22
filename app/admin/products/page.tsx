@@ -4,20 +4,20 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 type Product={
-  id:string;name:string;slug:string;description:string;category:string;priceCents:number;
+  id:string;name:string;slug:string;description:string;category:string;subcategory?:string|null;priceCents:number;
   currency:string;stock:number;active:boolean;type:string;player?:string|null;club?:string|null;
   season?:string|null;imageUrl?:string|null;imageUrls?:string[];certificateId?:string|null;
   provenance?:string|null;signingProof?:string|null;
 };
 
 const emptyForm={
-  id:'',name:'',slug:'',description:'',category:'Shirts',type:'SIGNED',price:'',stock:'1',
+  id:'',name:'',slug:'',description:'',category:'Shirts',subcategory:'Legends',type:'SIGNED',price:'',stock:'1',
   player:'',club:'',season:'',imageUrl:'',imageUrls:'',certificateId:'',provenance:'',
   signingProof:'',active:'true'
 };
 
 const categoryLabels:Record<string,string>={
-  Shirts:'Футболки',Boots:'Бутсы',Shorts:'Шорты',Balls:'Мячи','Boxing Gloves':'Боксерские перчатки',Tennis:'Теннис',UFC:'UFC'
+  Shirts:'Футболки',Boots:'Бутсы',Balls:'Мячи','Boxing Gloves':'Боксерские перчатки',Tennis:'Теннис',UFC:'UFC'
 };
 
 export default function AdminProducts(){
@@ -42,7 +42,7 @@ export default function AdminProducts(){
     setEditing(true);
     setError('');
     setForm({
-      id:p.id,name:p.name,slug:p.slug,description:p.description,category:p.category,type:p.type,
+      id:p.id,name:p.name,slug:p.slug,description:p.description,category:p.category,subcategory:p.subcategory||'',type:p.type,
       price:String(p.priceCents/100),stock:String(p.stock),player:p.player||'',club:p.club||'',
       season:p.season||'',imageUrl:p.imageUrl||'',imageUrls:(p.imageUrls||[]).join('\n'),
       certificateId:p.certificateId||'',provenance:p.provenance||'',signingProof:p.signingProof||'',
@@ -98,6 +98,7 @@ export default function AdminProducts(){
       method,headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         ...form,
+        subcategory:form.category==='Shirts'?(form.subcategory||'Legends'):null,
         priceCents:Math.round(Number(form.price)*100),
         stock:Math.max(0,Number(form.stock)||0),
         active:form.active==='true',
@@ -124,7 +125,7 @@ export default function AdminProducts(){
     const res=await fetch('/api/admin/products',{
       method:'PATCH',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        id:p.id,name:p.name,slug:p.slug,description:p.description,category:p.category,type:p.type,
+        id:p.id,name:p.name,slug:p.slug,description:p.description,category:p.category,subcategory:p.subcategory||null,type:p.type,
         priceCents:p.priceCents,stock:p.stock,player:p.player,club:p.club,season:p.season,
         imageUrl:p.imageUrl,imageUrls:p.imageUrls||[],certificateId:p.certificateId,provenance:p.provenance,
         signingProof:p.signingProof,active:!p.active,sizes:[]
@@ -151,7 +152,7 @@ export default function AdminProducts(){
         <input value={form.slug} onChange={e=>set('slug',e.target.value)} placeholder="Slug" required/>
         <textarea value={form.description} onChange={e=>set('description',e.target.value)} placeholder="Описание" required/>
         <div className="adminTwo"><input value={form.player} onChange={e=>set('player',e.target.value)} placeholder="Игрок"/><input value={form.club} onChange={e=>set('club',e.target.value)} placeholder="Клуб"/></div>
-        <div className="adminTwo"><input value={form.season} onChange={e=>set('season',e.target.value)} placeholder="Сезон"/><select value={form.category} onChange={e=>set('category',e.target.value)} required><option value="Shirts">Футболки</option><option value="Boots">Бутсы</option><option value="Shorts">Шорты</option><option value="Balls">Мячи</option><option value="Boxing Gloves">Боксерские перчатки</option><option value="Tennis">Теннис</option><option value="UFC">UFC</option></select></div>
+        <div className="adminTwo"><select value={form.subcategory||''} onChange={e=>set('subcategory',e.target.value)} disabled={form.category!=='Shirts'}><option value="">Подраздел футболки</option><option value="Legends">Легенды</option><option value="Clubs">Клубы</option><option value="National Teams">Сборные</option></select><input value={form.season} onChange={e=>set('season',e.target.value)} placeholder="Сезон"/><select value={form.category} onChange={e=>set('category',e.target.value)} required><option value="Shirts">Футболки</option><option value="Boots">Бутсы</option><option value="Balls">Мячи</option><option value="Boxing Gloves">Боксерские перчатки</option><option value="Tennis">Теннис</option><option value="UFC">UFC</option></select></div>
         <div className="adminTwo"><select value={form.type} onChange={e=>set('type',e.target.value)}><option value="SIGNED">SIGNED</option><option value="STANDARD">STANDARD</option><option value="COLLECTOR">COLLECTOR</option></select><input value={form.price} onChange={e=>set('price',e.target.value)} placeholder="Цена EUR" type="number" min="0" step="0.01" required/></div>
         <div className="adminTwo"><input value={form.stock} onChange={e=>set('stock',e.target.value)} placeholder="Количество" type="number" min="0"/><select value={form.active} onChange={e=>set('active',e.target.value)}><option value="true">Виден на сайте</option><option value="false">Скрыт</option></select></div>
 
