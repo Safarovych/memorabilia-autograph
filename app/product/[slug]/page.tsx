@@ -52,7 +52,7 @@ export default async function ProductPage({params}:{params:Promise<{slug:string}
   const tone=toneFor(p.category,p.name);
   const price=p.priceCents/100;
   const ruName=p.nameRu||legacyRuNames[p.name]||p.name;
-  const ruDescription=p.descriptionRu||legacyRuDescriptions[p.description]||p.description;
+  const ruDescription=p.descriptionRu||legacyRuDescriptions[p.description]||(p.name==='Eric Cantona Signed Manchester United Shirt'?'Футболка Manchester United с автографом Эрика Кантона. Уникальный коллекционный предмет для футбольных болельщиков и коллекционеров спортивной меморабилии. Сертификат подлинности входит в комплект.'):p.description;
 
   return <PageShell><main className="section">
     <div className="productDetailGrid">
