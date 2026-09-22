@@ -218,3 +218,12 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .tileVisual.tennis{background-image:url('/memorabilia_tennis.jpg')!important}
 .tileVisual.ufc{background-image:url('/memorabilia_ufc.jpg')!important}
 .collectionTile:hover .tileVisual{filter:saturate(1.04) contrast(1.04);transform:scale(1.015)}
+
+
+/* Real photo category strip */
+.categoryPhotoCard{padding:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;background:#fff!important}
+.categoryPhoto{display:block;width:100%;height:120px;background-size:cover;background-position:center;background-repeat:no-repeat}
+.categoryPhoto-0{background-image:url('/category_shirts.jpg')}.categoryPhoto-1{background-image:url('/category_boots.jpg')}.categoryPhoto-2{background-image:url('/category_balls.jpg')}.categoryPhoto-3{background-image:url('/category_boxing_gloves.jpg')}.categoryPhoto-4{background-image:url('/category_tennis.jpg')}.categoryPhoto-5{background-image:url('/category_ufc.jpg')}
+.categoryPhotoCard>b{display:block;padding:12px 8px;font-size:11px;font-weight:800;text-align:center;color:#17191b}
+.categoryPhotoCard:hover .categoryPhoto{transform:scale(1.025);filter:saturate(1.04)}
+@media(max-width:700px){.categoryPhoto{height:95px}}
