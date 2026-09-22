@@ -12,7 +12,6 @@ const names:Record<string,string>={
   'Germany Home Jersey':'Домашняя футболка Германии',
   'Bayern Retro Jersey':'Ретро-футболка Баварии',
   'Elite Black Training Top':'Чёрный тренировочный топ',
-  'Legends Collector Scarf':'Коллекционный шарф Legends',
   'Lionel Messi Signed Argentina Jersey':'Футболка Аргентины с автографом Лионеля Месси'
 };
 
@@ -21,12 +20,12 @@ const categories=[
   {id:'boots',key:'Boots',en:'BOOTS',ru:'БУТСЫ'},
   {id:'shorts',key:'Shorts',en:'SHORTS',ru:'ШОРТЫ'},
   {id:'balls',key:'Balls',en:'BALLS',ru:'МЯЧИ'},
-  {id:'scarves',key:'Scarves',en:'SCARVES',ru:'ШАРФЫ'},
-  {id:'armbands',key:'Armbands',en:'ARMBANDS',ru:'ПОВЯЗКИ'}
+  {id:'boxing-gloves',key:'Boxing Gloves',en:'BOXING GLOVES',ru:'БОКСЕРСКИЕ ПЕРЧАТКИ'},
+  {id:'tennis',key:'Tennis',en:'TENNIS',ru:'ТЕННИС'},
+  {id:'ufc',key:'UFC',en:'UFC',ru:'UFC'}
 ] as const;
 
 function toneFor(category:string,name:string){
-  if(category==='Scarves') return 'gold';
   if(/Barcelona/i.test(name)) return 'barca';
   if(/Liverpool|Bayern/i.test(name)) return 'red';
   if(/Training/i.test(name)) return 'black';
@@ -64,8 +63,8 @@ export default async function Shop(){
     <main className="section shopPage">
       <div className="sectionHead"><div>
         <p className="eyebrow"><LanguageText en="SHOP / COLLECTION" ru="МАГАЗИН / КОЛЛЕКЦИЯ"/></p>
-        <h2><LanguageText en="FOOTBALL COLLECTION" ru="ФУТБОЛЬНАЯ КОЛЛЕКЦИЯ"/></h2>
-        <p><LanguageText en="Choose a dedicated category to browse football shirts, boots, shorts, balls, scarves and armbands." ru="Выберите отдельный подраздел: футболки, бутсы, шорты, мячи, шарфы или повязки."/></p>
+        <h2><LanguageText en="SPORTS MEMORABILIA" ru="СПОРТИВНАЯ МЕМОРAБИЛИЯ"/></h2>
+        <p><LanguageText en="Choose a dedicated category to browse football shirts, boots, shorts, balls, boxing gloves, tennis and UFC memorabilia." ru="Выберите отдельный подраздел: футболки, бутсы, шорты, мячи, боксерские перчатки, теннис или UFC."/></p>
       </div></div>
 
       <nav className="shopCategoryNav" aria-label="Shop categories">
