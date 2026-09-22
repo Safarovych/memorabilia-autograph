@@ -5,7 +5,7 @@ import { prisma } from '../../lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
-const categories=[{id:'shirts',key:'Shirts',en:'FOOTBALL SHIRTS',ru:'ФУТБОЛЬНЫЕ ФУТБОЛКИ'},{id:'boots',key:'Boots',en:'BOOTS',ru:'БУТСЫ'},{id:'balls',key:'Balls',en:'BALLS',ru:'МЯЧИ'},{id:'boxing-gloves',key:'Boxing Gloves',en:'BOXING GLOVES',ru:'БОКСЕРСКИЕ ПЕРЧАТКИ'},{id:'tennis',key:'Tennis',en:'TENNIS',ru:'ТЕННИС'},{id:'ufc',key:'UFC',en:'UFC',ru:'UFC'}] as const;
+const categories=[{id:'shirts',key:'Shirts',en:'FOOTBALL SHIRTS',ru:'ФУТБОЛЬНЫЕ ФУТБОЛКИ'},{id:'boots',key:'Boots',en:'BOOTS',ru:'БУТСЫ'},{id:'balls',key:'Balls',en:'BALLS',ru:'МЯЧИ'},{id:'boxing-gloves',key:'Boxing Gloves',en:'BOXING GLOVES',ru:'БОКСЕРСКИЕ ПЕРЧАТКИ'},{id:'tennis',key:'Tennis',en:'TENNIS',ru:'ТЕННИС'},{id:'ufc',key:'UFC',en:'UFC',ru:'UFC'},{id:'formula-1',key:'Formula 1',en:'FORMULA 1',ru:'FORMULA 1'},{id:'basketball',key:'Basketball',en:'BASKETBALL',ru:'БАСКЕТБОЛ'}] as const;
 function toneFor(category:string,name:string){if(/Barcelona/i.test(name))return'barca';if(/Liverpool|Bayern/i.test(name))return'red';if(/Training/i.test(name))return'black';return'white'}
 function metaFor(p:any){const bits=[p.season,p.player?'SIGNED':null].filter(Boolean);return bits.length?bits.join(' • '):'COLLECTOR EDITION'}
 function markFor(p:any){if(p.club)return p.club.split(/\s+/).map((x:string)=>x[0]).join('').slice(0,3).toUpperCase();return'MA'}
