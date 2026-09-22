@@ -7,6 +7,5 @@ export const products:Product[]=[
 {slug:'germany-home-2025',name:'Germany Home Jersey',meta:'2025 • DFB Edition',price:109,tone:'white',badge:'ICON',mark:'GER',category:'Shirts',club:'Germany',description:'Germany national-team inspired jersey for the modern collector.',sizes:['S','M','L']},
 {slug:'retro-bayern-1999',name:'Bayern Retro Jersey',meta:'1999 • Heritage Collection',price:159,tone:'red',badge:'RETRO',mark:'FCB',category:'Shirts',club:'Bayern',description:'A retro-inspired Bayern collector piece with classic styling.',sizes:['M','L','XL']},
 {slug:'black-training-top',name:'Elite Black Training Top',meta:'Performance • 2026',price:89,tone:'black',badge:'LIMITED',mark:'MA',category:'Shirts',description:'Minimal premium training top with a modern athletic cut.',sizes:['S','M','L','XL']},
-{slug:'gold-collector-scarf',name:'Legends Collector Scarf',meta:'Limited • Numbered',price:79,tone:'gold',badge:'LIMITED',mark:'XI',category:'Scarves',description:'Numbered collector scarf for the premium football archive.'},
 {slug:'messi-signed-argentina-jersey',name:'Lionel Messi Signed Argentina Jersey',meta:'Signed • Certificate',price:0,tone:'white',badge:'SIGNED',mark:'10',category:'Shirts',player:'Lionel Messi',club:'Argentina',signed:true,description:'Example listing for a signed Argentina jersey with certificate and provenance record.'}
 ];
