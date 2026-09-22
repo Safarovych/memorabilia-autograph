@@ -3,7 +3,7 @@ import './globals.css';
 import { LanguageProvider } from '../components/LanguageProvider';
 import { CartProvider } from '../components/CartProvider';
 
-export const siteUrl = 'https://memorabilia-autograph.com';
+const siteUrl = 'https://memorabilia-autograph.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
