@@ -5,9 +5,11 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { BagIcon, HeartIcon, SearchIcon, UserIcon } from './Icon';
 import { useLanguage } from './LanguageProvider';
+import { useCart } from './CartProvider';
 
 export default function Header() {
   const {language,setLanguage}=useLanguage();
+  const {count}=useCart();
   const pathname=usePathname();
   const [hash,setHash]=useState('');
   const [menuOpen,setMenuOpen]=useState(false);
@@ -37,7 +39,7 @@ export default function Header() {
       <Link href="/shop" aria-label={ru?'Поиск':'Search'}><SearchIcon/></Link>
       <Link href="/login" aria-label={ru?'Аккаунт':'Account'}><UserIcon/></Link>
       <Link href="/shop" aria-label={ru?'Избранное':'Wishlist'}><HeartIcon/></Link>
-      <Link href="/cart" aria-label={ru?'Корзина':'Cart'} className="cartAction"><BagIcon/><b>0</b></Link>
+      <Link href="/cart" aria-label={ru?'Корзина':'Cart'} className="cartAction"><BagIcon/><b>{count}</b></Link>
       <div className="languageSwitch"><button className={language==='ru'?'active':''} onClick={()=>setLanguage('ru')}>RU</button><span>/</span><button className={language==='en'?'active':''} onClick={()=>setLanguage('en')}>EN</button></div>
     </div>
   </header>;
