@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PageShell from '../../../components/PageShell';
 import LanguageText from '../../../components/LanguageText';
+import AddToCartButton from '../../../components/AddToCartButton';
 import { prisma } from '../../../lib/prisma';
 
 export const dynamic = 'force-dynamic';
@@ -58,7 +59,7 @@ export default async function ProductPage({params}:{params:Promise<{slug:string}
         {p.season&&<p style={{color:'#777'}}><LanguageText en="Season: " ru="Сезон: "/>{p.season}</p>}
         <p style={{color:'#777'}}><LanguageText en="Sizes: " ru="Размеры: "/>{p.sizes?.join(' / ')||<LanguageText en="One size" ru="Единый размер"/>}</p>
         {p.certificateId&&<p style={{color:'#777'}}><LanguageText en="Certificate ID: " ru="ID сертификата: "/>{p.certificateId}</p>}
-        <Link className="btn" href="/cart"><LanguageText en="ADD TO BAG" ru="ДОБАВИТЬ В КОРЗИНУ"/></Link>
+        <AddToCartButton product={{id:p.id,name:p.name,slug:p.slug,priceCents:p.priceCents,currency:p.currency,imageUrl:p.imageUrl}}/>
       </div>
     </div>
   </main></PageShell>
