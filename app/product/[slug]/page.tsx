@@ -71,7 +71,7 @@ export default async function ProductPage({params}:{params:Promise<{slug:string}
         {p.season&&<p style={{color:'#777'}}><LanguageText en="Season: " ru="Сезон: "/>{p.season}</p>}
         <p style={{color:'#777'}}><LanguageText en="Sizes: " ru="Размеры: "/>{p.sizes?.join(' / ')||<LanguageText en="One size" ru="Единый размер"/>}</p>
         {p.certificateId&&<p style={{color:'#777'}}><LanguageText en="Certificate ID: " ru="ID сертификата: "/>{p.certificateId}</p>}
-        <AddToCartButton product={{id:p.id,name:p.name,slug:p.slug,priceCents:p.priceCents,currency:p.currency,imageUrl:p.imageUrl}}/>
+        <AddToCartButton product={{id:p.id,name:p.name,nameRu:ruName,slug:p.slug,priceCents:p.priceCents,currency:p.currency,imageUrl:p.imageUrl}}/>
       </div>
     </div>
   </main></PageShell>
