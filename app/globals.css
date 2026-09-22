@@ -205,3 +205,9 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 
 
 .premiumFooterSocial{display:flex!important;gap:10px;align-items:center}.premiumFooterSocial a{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border:1px solid #d8d2c8;background:#fff;color:#17191b!important;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.premiumFooterSocial a:hover{border-color:#b78b3a;color:#8b6a32!important}
+
+
+/* Premium generated imagery for collection tiles */
+.tileVisual{background-image:url('/sports-collection.webp');background-size:200% 200%;background-repeat:no-repeat;filter:saturate(.92) contrast(1.03)}
+.tileVisual.shirt{background-position:0 0}.tileVisual.boots{background-position:100% 0}.tileVisual.tennis{background-position:0 100%}.tileVisual.ufc{background-position:100% 100%}
+.collectionTile:hover .tileVisual{filter:saturate(1) contrast(1.06);transform:scale(1.015)}
