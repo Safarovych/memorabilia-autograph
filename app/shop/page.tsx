@@ -18,7 +18,6 @@ const names:Record<string,string>={
 const categories=[
   {id:'shirts',key:'Shirts',en:'FOOTBALL SHIRTS',ru:'ФУТБОЛЬНЫЕ ФУТБОЛКИ'},
   {id:'boots',key:'Boots',en:'BOOTS',ru:'БУТСЫ'},
-  {id:'shorts',key:'Shorts',en:'SHORTS',ru:'ШОРТЫ'},
   {id:'balls',key:'Balls',en:'BALLS',ru:'МЯЧИ'},
   {id:'boxing-gloves',key:'Boxing Gloves',en:'BOXING GLOVES',ru:'БОКСЕРСКИЕ ПЕРЧАТКИ'},
   {id:'tennis',key:'Tennis',en:'TENNIS',ru:'ТЕННИС'},
@@ -82,6 +81,24 @@ export default async function Shop({searchParams}:{searchParams?:Promise<{catego
           {products.length>0?<div className="productGrid">{products.map(p=><ProductCard key={p.id} p={p}/>)}</div>:<div className="shopEmpty"><h3><LanguageText en="COMING SOON" ru="СКОРО В КОЛЛЕКЦИИ"/></h3><p><LanguageText en="No signed pieces are currently published." ru="Сейчас нет опубликованных предметов с автографами."/></p></div>}
         </section>
       ) : categories.map(c=>{
+        if(c.key==='Shirts'){
+          const subcategories=[
+            {id:'shirts-legends',key:'Legends',en:'LEGENDS',ru:'ЛЕГЕНДЫ'},
+            {id:'shirts-clubs',key:'Clubs',en:'CLUBS',ru:'КЛУБЫ'},
+            {id:'shirts-national-teams',key:'National Teams',en:'NATIONAL TEAMS',ru:'СБОРНЫЕ'}
+          ];
+          return <section className="shopCategorySection" id={c.id} key={c.id}>
+            <div className="shopCategoryHead"><div><p className="eyebrow"><LanguageText en="CATEGORY" ru="КАТЕГОРИЯ"/></p><h2><LanguageText en={c.en} ru={c.ru}/></h2></div><span className="shopCategoryCount">{products.filter(p=>p.category===c.key).length}</span></div>
+            <nav className="shopSubcategoryNav" aria-label="Shirt subcategories">{subcategories.map(s=><a key={s.id} href={'#'+s.id}><LanguageText en={s.en} ru={s.ru}/></a>)}</nav>
+            {subcategories.map(s=>{
+              const items=products.filter(p=>p.category===c.key&&p.subcategory===s.key);
+              return <div className="shopSubcategory" id={s.id} key={s.id}>
+                <div className="shopSubcategoryHead"><h3><LanguageText en={s.en} ru={s.ru}/></h3><span>{items.length}</span></div>
+                {items.length>0?<div className="productGrid">{items.map(p=><ProductCard key={p.id} p={p}/>)}</div>:<div className="shopEmpty"><h3><LanguageText en="COMING SOON" ru="СКОРО В КОЛЛЕКЦИИ"/></h3><p><LanguageText en="New pieces for this shirt collection will be added here." ru="Новые предметы этой коллекции футболок появятся здесь."/></p></div>}
+              </div>;
+            })}
+          </section>;
+        }
         const items=products.filter(p=>p.category===c.key);
         return <section className="shopCategorySection" id={c.id} key={c.id}>
           <div className="shopCategoryHead"><div><p className="eyebrow"><LanguageText en="CATEGORY" ru="ПОДРАЗДЕЛ"/></p><h2><LanguageText en={c.en} ru={c.ru}/></h2></div><span className="shopCategoryCount">{items.length}</span></div>
