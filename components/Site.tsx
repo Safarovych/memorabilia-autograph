@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { ArrowIcon, HeartIcon } from './Icon';
 import { useLanguage } from './LanguageProvider';
 
-const catsEn=['Jerseys','Boots','Shirts','Shorts','Balls','Boxing Gloves','Tennis','UFC'];
-const catsRu=['Футболки','Бутсы','Рубашки','Шорты','Мячи','Боксерские перчатки','Теннис','UFC'];
+const catsEn=['Jerseys','Boots','Shirts','Balls','Boxing Gloves','Tennis','UFC'];
+const catsRu=['Футболки','Бутсы','Рубашки','Мячи','Боксерские перчатки','Теннис','UFC'];
 
 export default function Site() {
   const {language}=useLanguage(); const ru=language==='ru';
@@ -23,7 +23,7 @@ export default function Site() {
         <Link className="heroHotspot heroHotspotCollection" href="/shop" aria-label={ru?'Открыть коллекцию':'Open collection'} />
       </div>
     </section>
-    <section className="categoryStrip">{cats.map((name,i)=><Link href="/shop" key={name}><b>{['👕','👟','👕','▱','⚽','▣','▤','⌁'][i]}</b><span>{name}</span></Link>)}</section>
+    <section className="categoryStrip">{cats.map((name,i)=><Link href="/shop" key={name}><b>{['👕','👟','👕','⚽','▣','▤','⌁'][i]}</b><span>{name}</span></Link>)}</section>
     <section className="lightSection" id="about"><div className="premiumSectionHead"><div><p className="goldEyebrow">{ru?"КОЛЛЕКЦИЯ":"COLLECTION"}</p><h2>{ru?"ФУТБОЛЬНАЯ ИСТОРИЯ":"FOOTBALL HISTORY"}</h2></div><Link href="/shop">{ru?"Смотреть коллекцию":"View collection"} <ArrowIcon/></Link></div><p className="heroLead">{ru?"Подписанные футболки, бутсы, мячи и коллекционные предметы.":"Signed jerseys, boots, balls and collectible football memorabilia."}</p></section>
     <section className="shopCollection"><div className="collectionIntro"><p className="goldEyebrow">{ru?'МАГАЗИН КОЛЛЕКЦИИ':'SHOP THE COLLECTION'}</p><h2>{ru?<>ЛУЧШАЯ МЕМОРAБИЛИЯ<br/>В ОДНОМ МЕСТЕ</>:<>THE BEST MEMORABILIA<br/>IN ONE PLACE</>}</h2><p>{ru?'Эксклюзивная коллекция футболок, бутс, мячей и других предметов с автографами. Владейте частью футбольной истории.':'Browse our exclusive collection of signed jerseys, boots, shirts and more. Own a piece of football history.'}</p><Link className="darkBtn" href="/shop">{ru?'СМОТРЕТЬ ВСЕ ТОВАРЫ':'SHOP ALL PRODUCTS'} <ArrowIcon/></Link></div><div className="collectionTiles">{[['Jerseys','zidane'],['Boots','boots'],['Tennis','ball'],['UFC','frame']].map(([name,kind],i)=><Link className="collectionTile" href="/shop" key={name}><div className={'tileVisual '+kind}></div><strong>{ru?['Футболки','Бутсы','Теннис','UFC'][i]:name}</strong><span>{ru?'Смотреть →':'Shop now →'}</span></Link>)}</div></section>
     <section className="serviceBar"><div><b>♧</b><span><strong>{ru?'Гарантия подлинности':'Authenticity Guaranteed'}</strong>{ru?'Сертификаты и видео-подтверждение':'Certificates & video proof'}</span></div><div><b>▱</b><span><strong>{ru?'Доставка по всему миру':'Worldwide Shipping'}</strong>{ru?'Безопасная доставка':'Safe & insured delivery'}</span></div><div><b>◇</b><span><strong>{ru?'Безопасная оплата':'Secure Payments'}</strong>{ru?'Защищённое соединение SSL':'SSL encrypted'}</span></div><div><b>♧</b><span><strong>{ru?'Поддержка':'Support & Help'}</strong>{ru?'Мы всегда готовы помочь':'We\'re here for you'}</span></div></section>
