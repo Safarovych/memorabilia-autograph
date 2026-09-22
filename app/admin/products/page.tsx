@@ -17,7 +17,7 @@ const emptyForm={
 };
 
 const categoryLabels:Record<string,string>={
-  Shirts:'Футболки',Boots:'Бутсы',Shorts:'Шорты',Balls:'Мячи',Scarves:'Шарфы',Armbands:'Повязки'
+  Shirts:'Футболки',Boots:'Бутсы',Shorts:'Шорты',Balls:'Мячи','Boxing Gloves':'Боксерские перчатки',Tennis:'Теннис',UFC:'UFC'
 };
 
 export default function AdminProducts(){
@@ -151,7 +151,7 @@ export default function AdminProducts(){
         <input value={form.slug} onChange={e=>set('slug',e.target.value)} placeholder="Slug" required/>
         <textarea value={form.description} onChange={e=>set('description',e.target.value)} placeholder="Описание" required/>
         <div className="adminTwo"><input value={form.player} onChange={e=>set('player',e.target.value)} placeholder="Игрок"/><input value={form.club} onChange={e=>set('club',e.target.value)} placeholder="Клуб"/></div>
-        <div className="adminTwo"><input value={form.season} onChange={e=>set('season',e.target.value)} placeholder="Сезон"/><select value={form.category} onChange={e=>set('category',e.target.value)} required><option value="Shirts">Футболки</option><option value="Boots">Бутсы</option><option value="Shorts">Шорты</option><option value="Balls">Мячи</option><option value="Scarves">Шарфы</option><option value="Armbands">Повязки</option></select></div>
+        <div className="adminTwo"><input value={form.season} onChange={e=>set('season',e.target.value)} placeholder="Сезон"/><select value={form.category} onChange={e=>set('category',e.target.value)} required><option value="Shirts">Футболки</option><option value="Boots">Бутсы</option><option value="Shorts">Шорты</option><option value="Balls">Мячи</option><option value="Boxing Gloves">Боксерские перчатки</option><option value="Tennis">Теннис</option><option value="UFC">UFC</option></select></div>
         <div className="adminTwo"><select value={form.type} onChange={e=>set('type',e.target.value)}><option value="SIGNED">SIGNED</option><option value="STANDARD">STANDARD</option><option value="COLLECTOR">COLLECTOR</option></select><input value={form.price} onChange={e=>set('price',e.target.value)} placeholder="Цена EUR" type="number" min="0" step="0.01" required/></div>
         <div className="adminTwo"><input value={form.stock} onChange={e=>set('stock',e.target.value)} placeholder="Количество" type="number" min="0"/><select value={form.active} onChange={e=>set('active',e.target.value)}><option value="true">Виден на сайте</option><option value="false">Скрыт</option></select></div>
 
