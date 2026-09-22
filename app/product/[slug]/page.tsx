@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PageShell from '../../../components/PageShell';
 import LanguageText from '../../../components/LanguageText';
