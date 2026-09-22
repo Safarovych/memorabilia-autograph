@@ -229,3 +229,6 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 @media(max-width:700px){.categoryPhoto{height:95px}}
 
 .categoryPhoto-6{background-image:url('/category_formula1.jpg')!important}.categoryPhoto-7{background-image:url('/category_basketball.jpg')!important}
+
+
+.aboutCopy{max-width:920px;margin-top:26px;color:#4d5054;font-size:15px;line-height:1.8}.aboutCopy p{margin:0 0 18px}.aboutCopy .aboutLead{font-size:20px;line-height:1.55;color:#17191b;font-weight:600}.aboutClosing{margin-top:28px!important;font-size:18px;color:#17191b}.aboutTagline{font-size:11px!important;letter-spacing:.16em;text-transform:uppercase;color:#b78b3a;margin-top:26px!important}
