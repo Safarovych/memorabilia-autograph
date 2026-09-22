@@ -160,3 +160,12 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .adminEditingNotice{padding:10px 12px;background:#f7f0e4;border-left:3px solid #b78b3a;font-size:9px;color:#6d5b3a}
 .adminFormEditing{border-color:#b78b3a;box-shadow:0 10px 30px rgba(183,139,58,.10)}
 @media(max-width:680px){.adminPhotoBox{grid-template-columns:90px 1fr}.adminPhotoPreview{width:90px;height:90px}.adminRowActions b{width:100%}}
+
+
+/* Shirt collection subcategories */
+.shopSubcategoryNav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0 0 14px;border-bottom:1px solid #ddd7cf}
+.shopSubcategoryNav a{display:inline-flex;align-items:center;padding:9px 14px;border:1px solid #d8d1c7;background:#fff;color:#17191b;font-size:10px;font-weight:800;letter-spacing:.08em;text-decoration:none}
+.shopSubcategory{margin-top:24px;padding-top:8px}
+.shopSubcategoryHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.shopSubcategoryHead h3{margin:0;font-size:18px;letter-spacing:.04em}
+.shopSubcategoryHead span{font-size:11px;color:#8b8175}
