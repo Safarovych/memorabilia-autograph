@@ -202,3 +202,6 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .adminPhotoSlot .adminPhotoPreview{width:100%;height:110px}
 .adminPhotoSlot input[type=file]{width:100%;margin-top:6px}
 @media(max-width:680px){.productGalleryThumbs{height:64px}.adminPhotoSlots{grid-template-columns:1fr 1fr}.adminPhotoSlot:last-child{grid-column:1/-1}}
+
+
+.premiumFooterSocial{display:flex!important;gap:10px;align-items:center}.premiumFooterSocial a{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border:1px solid #d8d2c8;background:#fff;color:#17191b!important;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.premiumFooterSocial a:hover{border-color:#b78b3a;color:#8b6a32!important}
