@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/prisma';
 import { getCurrentUser } from '../../../../lib/auth';
+import { translateProductText } from '../../../../lib/translateProduct';
 
 async function requireAdmin(){const user=await getCurrentUser();return user?.role==='ADMIN'?user:null}
 
@@ -23,14 +24,20 @@ export async function POST(request:Request){
   const user=await requireAdmin();if(!user)return NextResponse.json({error:'Unauthorized'},{status:401});
   try{const body=await request.json();const data=productData(body);const slug=String(body.slug||'').trim();
     if(!data.name||!slug||!data.description||!data.category||!Number.isInteger(data.priceCents)||data.priceCents<0)return NextResponse.json({error:'Name, slug, description, category and valid price are required'},{status:400});
-    return NextResponse.json(await prisma.product.create({data:{...data,slug}}),{status:201});
+    const translation=await translateProductText(data.name,data.description);
+    const product=await prisma.product.create({data:{...data,slug,nameRu:translation.nameRu,descriptionRu:translation.descriptionRu}});
+    return NextResponse.json(product,{status:201});
   }catch(error:any){if(error?.code==='P2002')return NextResponse.json({error:'Slug or certificate ID already exists'},{status:409});return NextResponse.json({error:'Could not create product'},{status:500})}
 }
 export async function PATCH(request:Request){
   const user=await requireAdmin();if(!user)return NextResponse.json({error:'Unauthorized'},{status:401});
   try{const body=await request.json();const id=String(body.id||'').trim();const data=productData(body);const slug=String(body.slug||'').trim();
     if(!id||!data.name||!slug||!data.description||!data.category||!Number.isInteger(data.priceCents)||data.priceCents<0)return NextResponse.json({error:'Valid product data is required'},{status:400});
-    return NextResponse.json(await prisma.product.update({where:{id},data:{...data,slug}}));
+    const existing=await prisma.product.findUnique({where:{id},select:{name:true,description:true,nameRu:true,descriptionRu:true}});
+    if(!existing)return NextResponse.json({error:'Product not found'},{status:404});
+    const changed=existing.name!==data.name||existing.description!==data.description;
+    const translation=changed?await translateProductText(data.name,data.description):{nameRu:existing.nameRu||'',descriptionRu:existing.descriptionRu||''};
+    return NextResponse.json(await prisma.product.update({where:{id},data:{...data,slug,nameRu:translation.nameRu||null,descriptionRu:translation.descriptionRu||null}}));
   }catch(error:any){if(error?.code==='P2002')return NextResponse.json({error:'Slug or certificate ID already exists'},{status:409});if(error?.code==='P2025')return NextResponse.json({error:'Product not found'},{status:404});return NextResponse.json({error:'Could not update product'},{status:500})}
 }
 export async function DELETE(request:Request){
