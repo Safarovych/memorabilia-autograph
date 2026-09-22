@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Memorabilia Autograph — Football Heritage',
     template: '%s | Memorabilia Autograph',
   },
-  description: 'Premium football jerseys, signed memorabilia, collector pieces and live auctions.',
+  description: 'Premium sports memorabilia, signed jerseys, boots, boxing gloves, tennis and UFC collectibles.',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
