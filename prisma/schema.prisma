@@ -59,7 +59,9 @@ model Product {
   id String @id @default(cuid())
   slug String @unique
   name String
+  nameRu String?
   description String
+  descriptionRu String?
   category String
   subcategory String?
   type ProductType @default(STANDARD)
