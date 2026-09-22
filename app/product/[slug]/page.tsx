@@ -13,7 +13,6 @@ const desc:Record<string,string>={
   'Germany national-team inspired jersey for the modern collector.':'Футболка в стиле сборной Германии для современного коллекционера.',
   'A retro-inspired Bayern collector piece with classic styling.':'Коллекционный ретро-предмет Баварии в классическом стиле.',
   'Minimal premium training top with a modern athletic cut.':'Минималистичный премиальный тренировочный топ современного спортивного кроя.',
-  'Numbered collector scarf for the premium football archive.':'Нумерованный коллекционный шарф для футбольного архива.',
   'Example listing for a signed Argentina jersey with certificate and provenance record.':'Пример футболки Аргентины с автографом, сертификатом и историей происхождения.'
 };
 
@@ -24,12 +23,10 @@ const names:Record<string,string>={
   'Germany Home Jersey':'Домашняя футболка Германии',
   'Bayern Retro Jersey':'Ретро-футболка Баварии',
   'Elite Black Training Top':'Чёрный тренировочный топ',
-  'Legends Collector Scarf':'Коллекционный шарф Legends',
   'Lionel Messi Signed Argentina Jersey':'Футболка Аргентины с автографом Лионеля Месси'
 };
 
 function toneFor(category:string,name:string){
-  if(category==='Scarves') return 'gold';
   if(/Barcelona/i.test(name)) return 'barca';
   if(/Liverpool|Bayern/i.test(name)) return 'red';
   if(/Training/i.test(name)) return 'black';
