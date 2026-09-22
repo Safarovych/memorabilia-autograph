@@ -9,7 +9,7 @@ const names:Record<string,string>={
   'Real Madrid Home Jersey':'Домашняя футболка Реал Мадрид',
   'FC Barcelona Home Jersey':'Домашняя футболка Барселоны',
   'Liverpool Home Jersey':'Домашняя футболка Ливерпуля',
-  'Germany Home Jersey':'Домашняя футболка Германии',
+  'Germany Home Jersey':'Футболка Германии',
   'Bayern Retro Jersey':'Ретро-футболка Баварии',
   'Elite Black Training Top':'Чёрный тренировочный топ',
   'Lionel Messi Signed Argentina Jersey':'Футболка Аргентины с автографом Лионеля Месси'
@@ -44,10 +44,9 @@ function markFor(p:any){
 
 function ProductCard({p}:{p:any}){
   const tone=toneFor(p.category,p.name);
-  const image=p.imageUrl;
   return <article className="productCard">
     <Link href={'/product/'+p.slug} className={'productVisual '+tone}>
-      {image?<img src={image} alt={p.name} className="productCardImage"/>:<><span className="shirtMark">{markFor(p)}</span><span className="shirtNumber">{p.type==='SIGNED'?'10':'11'}</span></>}
+      {p.imageUrl?<img src={p.imageUrl} alt={p.name} className="productCardImage"/>:<><span className="shirtMark">{markFor(p)}</span><span className="shirtNumber">{p.type==='SIGNED'?'10':'11'}</span></>}
       {p.type==='SIGNED'?<span className="badge">SIGNED</span>:null}
     </Link>
     <div className="productInfo">
@@ -57,29 +56,36 @@ function ProductCard({p}:{p:any}){
   </article>;
 }
 
-export default async function Shop(){
-  const products=await prisma.product.findMany({where:{active:true},orderBy:{createdAt:'desc'}});
+export default async function Shop({searchParams}:{searchParams?:Promise<{category?:string}>}){
+  const params=searchParams?await searchParams:{};
+  const signedOnly=params.category?.toLowerCase()==='signed';
+  const products=await prisma.product.findMany({
+    where:{active:true,...(signedOnly?{type:'SIGNED'}:{})},
+    orderBy:{createdAt:'desc'}
+  });
+
   return <PageShell>
     <main className="section shopPage">
       <div className="sectionHead"><div>
         <p className="eyebrow"><LanguageText en="SHOP / COLLECTION" ru="МАГАЗИН / КОЛЛЕКЦИЯ"/></p>
-        <h2><LanguageText en="SPORTS MEMORABILIA" ru="СПОРТИВНАЯ МЕМОРAБИЛИЯ"/></h2>
-        <p><LanguageText en="Choose a dedicated category to browse football shirts, boots, shorts, balls, boxing gloves, tennis and UFC memorabilia." ru="Выберите отдельный подраздел: футболки, бутсы, шорты, мячи, боксерские перчатки, теннис или UFC."/></p>
+        <h2><LanguageText en={signedOnly?'SIGNED MEMORABILIA':'SPORTS MEMORABILIA'} ru={signedOnly?'МЕМОРAБИЛИЯ С АВТОГРАФАМИ':'СПОРТИВНАЯ МЕМОРAБИЛИЯ'}/></h2>
+        <p><LanguageText en="Choose a category to browse authenticated sports memorabilia." ru="Выберите подраздел, чтобы посмотреть спортивную меморабилию с подтверждённой подлинностью."/></p>
       </div></div>
 
-      <nav className="shopCategoryNav" aria-label="Shop categories">
+      {!signedOnly&&<nav className="shopCategoryNav" aria-label="Shop categories">
         {categories.map(c=><a key={c.id} href={'#'+c.id}><LanguageText en={c.en} ru={c.ru}/></a>)}
-      </nav>
+      </nav>}
 
-      {categories.map(c=>{
+      {signedOnly ? (
+        <section className="shopCategorySection" id="signed">
+          <div className="shopCategoryHead"><div><p className="eyebrow"><LanguageText en="AUTHENTICITY" ru="ПОДЛИННОСТЬ"/></p><h2><LanguageText en="SIGNED MEMORABILIA" ru="МЕМОРAБИЛИЯ С АВТОГРАФАМИ"/></h2></div><span className="shopCategoryCount">{products.length}</span></div>
+          {products.length>0?<div className="productGrid">{products.map(p=><ProductCard key={p.id} p={p}/>)}</div>:<div className="shopEmpty"><h3><LanguageText en="COMING SOON" ru="СКОРО В КОЛЛЕКЦИИ"/></h3><p><LanguageText en="No signed pieces are currently published." ru="Сейчас нет опубликованных предметов с автографами."/></p></div>}
+        </section>
+      ) : categories.map(c=>{
         const items=products.filter(p=>p.category===c.key);
         return <section className="shopCategorySection" id={c.id} key={c.id}>
-          <div className="shopCategoryHead"><div>
-            <p className="eyebrow"><LanguageText en="CATEGORY" ru="ПОДРАЗДЕЛ"/></p>
-            <h2><LanguageText en={c.en} ru={c.ru}/></h2>
-          </div><span className="shopCategoryCount">{items.length}</span></div>
-          {items.length>0?<div className="productGrid">{items.map(p=><ProductCard key={p.id} p={p}/>)}</div>:
-            <div className="shopEmpty"><h3><LanguageText en="COMING SOON" ru="СКОРО В КОЛЛЕКЦИИ"/></h3><p><LanguageText en="This category is prepared for new memorabilia and will be updated with available pieces." ru="Этот подраздел уже подготовлен и будет пополняться новыми предметами коллекции."/></p></div>}
+          <div className="shopCategoryHead"><div><p className="eyebrow"><LanguageText en="CATEGORY" ru="ПОДРАЗДЕЛ"/></p><h2><LanguageText en={c.en} ru={c.ru}/></h2></div><span className="shopCategoryCount">{items.length}</span></div>
+          {items.length>0?<div className="productGrid">{items.map(p=><ProductCard key={p.id} p={p}/>)}</div>:<div className="shopEmpty"><h3><LanguageText en="COMING SOON" ru="СКОРО В КОЛЛЕКЦИИ"/></h3><p><LanguageText en="This category is prepared for new memorabilia and will be updated with available pieces." ru="Этот подраздел уже подготовлен и будет пополняться новыми предметами коллекции."/></p></div>}
         </section>;
       })}
     </main>
