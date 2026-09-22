@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { prisma } from '../lib/prisma';
-import { siteUrl } from './layout';
+import { siteUrl } from '../lib/site';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [products, auctions] = await Promise.all([
