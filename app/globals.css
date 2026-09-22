@@ -227,3 +227,5 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .categoryPhotoCard>b{display:block;padding:12px 8px;font-size:11px;font-weight:800;text-align:center;color:#17191b}
 .categoryPhotoCard:hover .categoryPhoto{transform:scale(1.025);filter:saturate(1.04)}
 @media(max-width:700px){.categoryPhoto{height:95px}}
+
+.categoryPhoto-6{background-image:url('/category_formula1.jpg')!important}.categoryPhoto-7{background-image:url('/category_basketball.jpg')!important}
