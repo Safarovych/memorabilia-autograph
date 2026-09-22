@@ -3,10 +3,8 @@ import './globals.css';
 import { LanguageProvider } from '../components/LanguageProvider';
 import { CartProvider } from '../components/CartProvider';
 
-const siteUrl = 'https://memorabilia-autograph.com';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL('https://memorabilia-autograph.com'),
   title: {
     default: 'Memorabilia Autograph — Sports Memorabilia & Signed Collectibles',
     template: '%s | Memorabilia Autograph',
