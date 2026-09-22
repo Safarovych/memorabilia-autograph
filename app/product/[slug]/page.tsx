@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import PageShell from '../../../components/PageShell';
 import LanguageText from '../../../components/LanguageText';
 import AddToCartButton from '../../../components/AddToCartButton';
+import ProductGallery from '../../../components/ProductGallery';
 import { prisma } from '../../../lib/prisma';
 
 export const dynamic = 'force-dynamic';
@@ -57,8 +58,7 @@ export default async function ProductPage({params}:{params:Promise<{slug:string}
   return <PageShell><main className="section">
     <div className="productDetailGrid">
       <div className={'productVisual '+tone}>
-        {p.imageUrl?<img src={p.imageUrl} alt={p.name} className="productDetailImage"/>:<><span className="shirtMark">{p.club?.slice(0,3).toUpperCase()||'MA'}</span><span className="shirtNumber">{p.type==='SIGNED'?'10':'11'}</span></>}
-        {p.type==='SIGNED'?<span className="badge"><LanguageText en="SIGNED" ru="С АВТОГРАФОМ"/></span>:null}
+        {p.imageUrl?<ProductGallery images={[p.imageUrl,...(p.imageUrls||[])]} alt={p.name} badge={p.type==='SIGNED'?<span className="badge"><LanguageText en="SIGNED" ru="С АВТОГРАФОМ"/></span>:null}/>:<><span className="shirtMark">{p.club?.slice(0,3).toUpperCase()||'MA'}</span><span className="shirtNumber">{p.type==='SIGNED'?'10':'11'}</span>{p.type==='SIGNED'?<span className="badge"><LanguageText en="SIGNED" ru="С АВТОГРАФОМ"/></span>:null}</>}
       </div>
       <div>
         <p className="eyebrow"><LanguageText en="PRODUCT" ru="ТОВАР"/></p>
