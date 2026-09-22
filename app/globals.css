@@ -169,3 +169,12 @@ body{background:var(--premium-bg);color:var(--premium-ink)}
 .shopSubcategoryHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .shopSubcategoryHead h3{margin:0;font-size:18px;letter-spacing:.04em}
 .shopSubcategoryHead span{font-size:11px;color:#8b8175}
+
+
+/* Bilingual product editor */
+.adminLangGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.adminLangGrid label{display:block;margin:0 0 6px;font-size:8px;font-weight:800;letter-spacing:.08em;color:#777}
+.adminTranslateBtn{width:100%;padding:11px 13px;border:1px solid #b78b3a;background:#f7f0e4;color:#765a2a;font-size:8px;font-weight:800;letter-spacing:.08em;cursor:pointer}
+.adminTranslateBtn:hover{background:#efe2cb}
+.adminTranslateBtn:disabled{opacity:.55;cursor:wait}
+@media(max-width:680px){.adminLangGrid{grid-template-columns:1fr}}
