@@ -2,7 +2,7 @@
 
 import {createContext,useContext,useEffect,useMemo,useState} from 'react';
 
-type CartItem={id:string;name:string;slug:string;priceCents:number;currency:string;imageUrl?:string|null;quantity:number};
+type CartItem={id:string;name:string;nameRu?:string;slug:string;priceCents:number;currency:string;imageUrl?:string|null;quantity:number};
 type CartContextValue={items:CartItem[];count:number;totalCents:number;add:(item:Omit<CartItem,'quantity'>)=>void;remove:(id:string)=>void;clear:()=>void};
 
 const CartContext=createContext<CartContextValue|null>(null);
