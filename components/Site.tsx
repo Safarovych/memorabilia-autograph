@@ -17,16 +17,11 @@ export default function Site() {
   ];
   const cats=ru?catsRu:catsEn;
   return <main className="premiumHome">
-    <section className="premiumHero">
-      <div className="premiumHeroCopy">
-        <p className="goldEyebrow">{ru?'ПРЕМИАЛЬНАЯ ФУТБОЛЬНАЯ МЕМОРAБИЛИЯ':'PREMIUM SPORTS MEMORABILIA'}</p>
-        <h1>{ru?<>ЛЕГЕНДЫ.<br/>АВТОГРАФЫ.<br/><span>НАСТОЯЩИЕ ИСТОРИИ.</span></>:<>LEGENDS.<br/>AUTOGRAPHS.<br/><span>REAL STORIES.</span></>}</h1>
-        <p className="heroLead">{ru?'Оригинальные футболки, бутсы и уникальные футбольные реликвии с автографами величайших игроков.':'Original signed jerseys, boots, shirts and unique memorabilia from the biggest names in football.'}</p>
-        <div className="heroButtons"><Link className="goldBtn" href="/shop">{ru?'СМОТРЕТЬ КОЛЛЕКЦИЮ':'EXPLORE COLLECTION'} <ArrowIcon/></Link></div>
-        <div className="heroTrust"><div><b>✓</b><span><strong>{ru?'100% подлинность':'100% Authentic'}</strong>{ru?'Проверено экспертами':'Verified by experts'}</span></div><div><b>▱</b><span><strong>{ru?'Доставка по всему миру':'Worldwide Shipping'}</strong>{ru?'Безопасная доставка':'Safe & insured delivery'}</span></div><div><b>♡</b><span><strong>{ru?'Поддержка добрых дел':'Support a Better Future'}</strong>{ru?'Часть средств — на благотворительность':'Part of proceeds to charity'}</span></div></div>
+    <section className="premiumHero" aria-label={ru?'Главный баннер коллекции':'Main collection banner'}>
+      <div className="heroImageLinks" aria-label={ru?'Навигация баннера':'Hero navigation'}>
+        <Link className="heroHotspot heroHotspotShop" href="/shop" aria-label={ru?'Открыть коллекцию':'Open collection'} />
+        <Link className="heroHotspot heroHotspotCollection" href="/shop" aria-label={ru?'Открыть коллекцию':'Open collection'} />
       </div>
-      <div className="premiumHeroVisual" aria-hidden="true"></div>
-
     </section>
     <section className="categoryStrip">{cats.map((name,i)=><Link href="/shop" key={name}><b>{['👕','👟','👕','▱','⚽','▣','▤','⌁'][i]}</b><span>{name}</span></Link>)}</section>
     <section className="lightSection" id="about"><div className="premiumSectionHead"><div><p className="goldEyebrow">{ru?"КОЛЛЕКЦИЯ":"COLLECTION"}</p><h2>{ru?"ФУТБОЛЬНАЯ ИСТОРИЯ":"FOOTBALL HISTORY"}</h2></div><Link href="/shop">{ru?"Смотреть коллекцию":"View collection"} <ArrowIcon/></Link></div><p className="heroLead">{ru?"Подписанные футболки, бутсы, мячи и коллекционные предметы.":"Signed jerseys, boots, balls and collectible football memorabilia."}</p></section>
