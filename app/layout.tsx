@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { LanguageProvider } from '../components/LanguageProvider';
+import { CartProvider } from '../components/CartProvider';
 
 const siteUrl = 'https://memorabilia-autograph.com';
 
@@ -28,5 +29,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en"><body><LanguageProvider>{children}</LanguageProvider></body></html>;
+  return <html lang="en"><body><LanguageProvider><CartProvider>{children}</CartProvider></LanguageProvider></body></html>;
 }
