@@ -30,7 +30,7 @@ export async function POST(request:Request){
     const product=await prisma.product.create({
       data:{
         name,slug,description,category,
-        type:body.type==='SIGNED'||body.type==='COLLECTOR'?'SIGNED':'STANDARD',
+        type:body.type==='SIGNED'||body.type==='COLLECTOR'?body.type:'STANDARD',
         club:body.club?String(body.club):null,
         player:body.player?String(body.player):null,
         season:body.season?String(body.season):null,
