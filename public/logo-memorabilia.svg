@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180">
+  <rect width="520" height="180" rx="8" fill="#111214"/>
+  <g font-family="Arial,Helvetica,sans-serif" font-weight="900">
+    <text x="155" y="78" font-size="72" fill="#f5f5f5" text-anchor="middle">M</text>
+    <text x="335" y="78" font-size="72" fill="#c99a3d" text-anchor="middle">A</text>
+  </g>
+  <path d="M225 20 L280 142 L356 25" fill="none" stroke="#f4f4f4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M230 139 C265 112 292 126 304 142 C319 160 349 150 382 126" fill="none" stroke="#c99a3d" stroke-width="8" stroke-linecap="round"/>
+  <text x="260" y="123" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="800" letter-spacing="7" fill="#f4f4f4" text-anchor="middle">MEMORABILIA</text>
+  <text x="260" y="157" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="500" letter-spacing="9" fill="#c99a3d" text-anchor="middle">AUTOGRAPH</text>
+</svg>
