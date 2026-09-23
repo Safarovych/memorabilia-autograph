@@ -37,7 +37,7 @@ export default function Header() {
     return pathname===href;
   };
 
-  return <header className={'premiumHeader '+(menuOpen?'menuOpen':'')}>
+  return <header className={'premiumHeader '+(pathname==='/'?'premiumHeaderHero ':'')+(menuOpen?'menuOpen':'')}>
     <Link className="premiumLogo" href="/" aria-label="Memorabilia Autograph">
       <img className="premiumLogoImage" src="/logo-memorabilia.png" alt="Memorabilia Autograph" />
     </Link>
