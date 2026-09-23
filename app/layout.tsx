@@ -8,7 +8,7 @@ const siteUrl = 'https://memorabilia-autograph.com';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Memorabilia Autograph — Sports Memorabilia & Signed Collectibles',
+    default: 'Memorabilia Autograph — Authentic Signed Sports Memorabilia',
     template: '%s | Memorabilia Autograph',
   },
   description: 'Discover authentic sports memorabilia, signed football shirts, boots, balls and collector pieces from football and other sports.',
