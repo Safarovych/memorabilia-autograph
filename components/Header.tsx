@@ -32,7 +32,7 @@ export default function Header() {
   };
 
   return <header className={'premiumHeader '+(menuOpen?'menuOpen':'')}>
-    <Link className="premiumLogo" href="/"><span className="premiumLogoMark">MA</span><span><strong>MEMORABILIA AUTOGRAPH</strong><small>{ru?'АУТЕНТИЧНАЯ СПОРТИВНАЯ МЕМОРAБИЛИЯ':'AUTHENTIC SPORTS MEMORABILIA'}</small></span></Link>
+    <Link className="premiumLogo" href="/" aria-label="Memorabilia Autograph"><img className="premiumLogoImage" src="/logo-memorabilia.svg" alt="Memorabilia Autograph" /></Link>
     <button className="mobileMenuButton" type="button" aria-label={menuOpen?(ru?'Закрыть меню':'Close menu'):(ru?'Открыть меню':'Open menu')} aria-expanded={menuOpen} onClick={()=>setMenuOpen(v=>!v)}><span></span><span></span><span></span></button>
     <nav onClick={()=>setMenuOpen(false)}>{nav.map(([label,href])=><Link key={label} href={href} className={isActive(href)?'active':''}>{label}</Link>)}</nav>
     <div className="premiumActions">
